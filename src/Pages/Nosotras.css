@@ -1,0 +1,38 @@
+/* Estilos de la pagina ¿Quienes Somos?*/
+.nosotras {
+  background: #ffffff;
+}
+
+body.dark-mode .nosotras {
+  background: #1d1d1d;
+}
+.nosotras-caja {
+  padding: 40px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #374151;
+  transition: transform 0.4s all;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+}
+
+.nosotras-caja:hover {
+  background-color: #fbaf89;
+  transform: scale(1.02);
+}
+
+.nombres {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #374151;
+}
+
+.descripcion {
+  color: #374151;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}

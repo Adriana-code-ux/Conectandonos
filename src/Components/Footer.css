@@ -1,0 +1,54 @@
+.footer {
+  background: #374151;
+  color: #ffffff;
+  padding: 48px 0 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.contenedor-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.contenido-footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.marca-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.icono-marca {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #0d9488, #14b8a6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.texto-footer {
+  color: #9ca3af;
+  line-height: 1.6;
+}
+
+.pie {
+  border-top: 1px solid #4b5563;
+  padding-top: 12px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
