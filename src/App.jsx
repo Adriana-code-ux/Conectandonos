@@ -5,9 +5,11 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Hero from './Components/Hero'
-import Header from './Components/Header'
+
 import Nosotras from './Pages/Nosotras'
 import Footer from './Components/Footer'
+import Informacion from './Pages/Informacion'
+import Contactos from './Pages/Contactos'
 function App() {
  
 
@@ -20,12 +22,21 @@ function App() {
             <Route 
         path='/'
         element={<Hero/>}
+      z/> 
+      <Route 
+        path='/Informacion'
+        element={<Informacion/>}
       z/>
-        <Route 
+      <Route 
         path='/Nosotras'
         element={<Nosotras/>}
       z/>
     
+      <Route 
+        path='/Contacto'
+        element={<Contactos/>}
+      z/>
+       
       </Routes>
          <Footer/>
 

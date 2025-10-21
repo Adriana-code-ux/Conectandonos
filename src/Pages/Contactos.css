@@ -1,0 +1,172 @@
+.titulo1 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+  padding: 20px;
+  font-size: 70px;
+  background-color: #ffffff;
+  color: #374151;
+}
+.contenedor-contacto {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+}
+
+.titulo-contacto {
+  font-size: 70px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: #374151;
+  text-align: center;
+  /*background-color: #e6fff9;*/
+}
+
+.textoinicial {
+  margin: 40px;
+  text-align: center;
+  background-color: #e6fff9;
+}
+
+.formulario-titulo {
+  font-size: 25px;
+  margin-top: 5px;
+  color: #374151;
+}
+
+.frasefinal {
+  margin: 30px 0;
+  text-align: center;
+  color: #5fe2e2;
+  font-size: 25px;
+  background: #f0fdfa;
+  border-radius: 15px;
+  border: #5fe2e2 ridge;
+  padding: 5px;
+}
+
+.info-palabras {
+  margin-bottom: 10px;
+  color: rgb(32, 29, 29);
+  text-align: start;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.p-frases {
+  margin-bottom: 10px;
+  color: rgb(38, 36, 36);
+  text-align: start;
+  font-size: 18px;
+}
+
+.imagen-titulo {
+  width: 100%;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.imagen-titulo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.contacto-campos {
+  background: #e6fff9;
+  padding: 32px;
+  border-radius: 16px;
+}
+
+.campos {
+  margin-bottom: 18px;
+}
+
+.campos label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.campos input,
+.campos textarea,
+.campos select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: border-color 0.3s;
+}
+
+.campos input:focus,
+.campos textarea:focus,
+.campos select:focus {
+  outline: none;
+  border-color: #0d9488;
+}
+
+.btn-primary {
+  background-color: #5fe2e2;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #4fd1d1;
+}
+
+.contenido-info {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://img.freepik.com/vector-premium/corazon-divertido-meditacion-cerebral-sonriente-equilibrio-mente-concepto-sentimientos-vector-plano-illustra_449806-518.jpg");
+  background-size: contain;
+  background-position: center;
+  padding: 20px;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.1); /* negro semitransparente encima */
+  background-blend-mode: overlay; /* mezcla color + imagen */
+}
+
+.contenido-info > * + * {
+  margin-top: 32px;
+}
+
+.info-item {
+  display: flex;
+  align-items: start;
+  gap: 16px;
+  margin-bottom: 32px;
+  margin-top: 16px;
+}
+
+.emojis-item {
+  width: 50px;
+  height: 50px;
+  background: #87dfdf;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contenido-contacto {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 25px;
+}
+
+@media (max-width: 768px) {
+  .contenido-contacto {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
