@@ -5,8 +5,9 @@ function Navbar() {
   return (
     <header className="navbar">
       <div className="contenedor">
-        <div className="contenido">
-          <div className="logo">
+        <div className="contenido contenido flex flex-col sm:flex-row sm:justify-between sm:items-center">
+
+          <div className="logo desktop-nav hidden sm:block">
             <div className="logo-icono">C</div>
             <span className="nombre">Conectándonos</span>
           </div>

@@ -3,15 +3,14 @@ import './Nosotras.css'
 function Nosotras (){
     return(
         <>
-<section id="servicios" className="nosotras mx-auto py-10 px-6">
-      <div className='px-12 py-5 ' > 
-      <img className='m-auto text-center' src="./Conentandonos1.jpeg" alt="" />
-        <h2 className="titulo1 text-5xl font-extrabold text-gray-800 text-center mb-4"><b>¿Quienes somos?</b></h2>
-        <p className=" text-lg text-gray-600 text-center mb-10">
-          Cuida tu Salud mental y emocional. Aquí estamos para acompañarte.
-        </p>
+    <section id="servicios" className="nosotras mx-auto py-10 px-6 max-w-5xl">
+      <div className='px-12 py-5 fondo' > 
+        <div>
+            <h2 className="titulo1 text-5xl font-extrabold text-gray-800 text-center mb-4"><b>¿Quienes somos?</b></h2>
+        </div>
 
-        <div className="nosotras-grid space-y-10">
+
+        <div className="cuadros nosotras-grid space-y-10 ">
           <div className="nosotras-caja perfil-card bg-camila p-8 rounded-lg flex-1 shadow-md">
             <h3 className="nombres text-2xl font-semibold text-gray-800 mb-3">Camila Warthon</h3>
             <p className="descripcion text-gray-700 leading-relaxed">
@@ -23,7 +22,7 @@ function Nosotras (){
               conmigo misma. Estoy emocionada por lo que está por venir y por
               todo lo que podremos lograr como un equipo.
             </p>
-          </div>
+        </div>
 
        
 
@@ -40,11 +39,7 @@ function Nosotras (){
             </p>
           </div>
 
-          
-
-       
-
-          
+        
         </div>
       </div>
     </section>

@@ -1,11 +1,13 @@
 /* Estilos de la pagina ¿Quienes Somos?*/
 .nosotras {
   background: #ffffff;
+  padding: 30px;
 }
 
 body.dark-mode .nosotras {
   background: #1d1d1d;
 }
+
 .nosotras-caja {
   padding: 40px;
   border: 2px solid transparent;
@@ -35,4 +37,16 @@ body.dark-mode .nosotras {
   margin-bottom: 24px;
   line-height: 1.6;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.fondo {
+  background-image: url("Conentandonos1.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.cuadros {
+  margin: 10vh;
+  padding: 7vh;
+  gap: 7vh;
 }

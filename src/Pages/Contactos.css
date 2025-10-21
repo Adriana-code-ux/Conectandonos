@@ -42,7 +42,7 @@
   font-size: 25px;
   background: #f0fdfa;
   border-radius: 15px;
-  border: #5fe2e2 ridge;
+  border: #b3dbdb ridge;
   padding: 5px;
 }
 
@@ -107,16 +107,16 @@
 .campos textarea:focus,
 .campos select:focus {
   outline: none;
-  border-color: #0d9488;
+  border-color: #b3dbdb;
 }
 
 .btn-primary {
-  background-color: #5fe2e2;
+  background-color: #b3dbdb;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #4fd1d1;
+  background-color: #b3dbdb;
 }
 
 .contenido-info {

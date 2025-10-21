@@ -1,5 +1,4 @@
 import './hero.css'
-import { Link } from 'react-router-dom';
 
 function Hero (){
     return(
@@ -20,7 +19,7 @@ function Hero (){
                         completamente confidencial, donde tu bienestar emocional es nuestra prioridad.</p>
 
                     <div className="caja-pequeña2">
-                    <span className="counter"><strong> 0 </strong></span>
+                    <span className="counter"><strong> 1500 </strong></span>
                     </div>
                         <p>¡1500 consultas exitosas! Tu bienestar mental es nuestra prioridad.</p>
                 </header>

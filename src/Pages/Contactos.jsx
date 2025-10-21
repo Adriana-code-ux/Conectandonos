@@ -4,8 +4,9 @@ const Contactos = () => {
   return (
     <div id="contactos" className="contenedor-contacto container">
       <div>
-        <h2 className="titulo1"><b>Estamos para Ayudarte</b></h2>
-        <p className="titulo2">Siempre encontrarás una respuesta amigable aquí</p>
+        <h2 className="text-6xl font-bold text-gray-700 text-center py-6 bg-white"><b>Estamos para Ayudarte</b></h2>
+        <p className="bg-white/20 p-4 rounded-lg shadow-lg backdrop-blur-sm
+                    max-w-3xl mx-auto font-sans text-xl text-gray-800 text-center mt-5">Siempre encontrarás una respuesta amigable aquí</p>
       </div>
 
       <div className="imagen-titulo" data-aos="flip-left">
@@ -16,24 +17,28 @@ const Contactos = () => {
         />
       </div>
 
-      <div className="texto-4">
-        <p>
-          En Conectándonos queremos que sepas que no estás sola. Este es tu espacio para compartir tus
-          pensamientos, expresar lo que sientes y encontrar un respiro cuando la carga se vuelve pesada. Aquí
-          puedes desahogarte o simplemente buscar una mano amiga cuando lo necesites.<br /><br />
+      <section className="min-h-screen flex items-center justify-center bg-white px-6 py-12">
+  <div className="max-w-4xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 p-12 rounded-3xl shadow-2xl text-center font-sans">
+    <h2 className="text-4xl font-bold text-gray-800 mb-6 font-serif">
+      En Conectándonos queremos que sepas que no estás sola 
+    </h2>
+    <p className="text-xl text-gray-700 leading-relaxed mb-4">
+      Este es tu espacio para compartir tus pensamientos, expresar lo que sientes y encontrar un respiro cuando la carga se vuelve pesada.
+    </p>
+    <p className="text-xl text-gray-700 leading-relaxed mb-8">
+      Aquí puedes desahogarte o simplemente buscar una mano amiga cuando lo necesites.
+    </p>
+    <p className="text-lg text-gray-600 italic">
+      Recuerda: dar el primer paso para hablar ya es un acto de valentía, y no tienes que hacerlo sola.  
+      Estamos aquí para acompañarte en este camino 🌈
+    </p>
+  </div>
+</section>
 
-          Escríbenos con total confianza, sin miedo a juicios ni críticas, porque creemos que cada voz merece ser
-          escuchada con respeto y empatía. Nuestro compromiso es ofrecerte un lugar seguro, donde encontrarás
-          escucha atenta, comprensión genuina y apoyo sincero 💙🧠.<br /><br />
-
-          Recuerda: dar el primer paso para hablar ya es un acto de valentía, y no tienes que hacerlo sola.
-          Estamos aquí para acompañarte en este camino.
-        </p>
-      </div>
 
       <div className="contenido-contacto">
         <div className="contacto-campos" data-aos="fade-right">
-          <h3 className="formulario-titulo">💙😁Formulario de Contacto</h3>
+          <h3 className="formulario-titulo">💙Formulario de Contacto</h3>
           <form id="contactForm">
             <div
               style={{
@@ -128,7 +133,7 @@ const Contactos = () => {
               <p style={{ color: "#373737" }}>
                 Te responderemos en un plazo máximo de 24 horas.
               </p>
-            </div>
+            </div>s
           </div>
 
           <div className="info-item">
@@ -142,8 +147,9 @@ const Contactos = () => {
         </div>
       </div>
 
-      <div className="frasefinal" data-aos="fade-up">
-        <h3>
+      <div  data-aos="fade-up">
+        <h3 className='bg-white/20 p-4 rounded-lg shadow-lg backdrop-blur-sm
+                    max-w-3xl mx-auto font-sans text-xl text-gray-800 text-center mt-5'>
           Aquí, cada paso hacia tu bienestar emocional es un logro y cada palabra compartida un puente hacia la esperanza.
         </h3>
       </div>
@@ -153,7 +159,7 @@ const Contactos = () => {
           <div style={{ gap: "16px", marginBottom: "24px", marginTop: "30px" }}>
             <div className="campos">
               <h3 className="formulario-titulo" id="titulo-suscripcion">
-                ¡SUSCRÍBETE!❤️😊
+                ¡SUSCRÍBETE!
               </h3>
 
               <label htmlFor="nombreSuscripcion">Nombre:</label>
@@ -177,7 +183,7 @@ const Contactos = () => {
               />
             </div>
 
-            <h3 className="formulario-titulo" id="titulo-opinion">"Tu voz importa,🤩🤔."</h3>
+            <h3 className="formulario-titulo" id="titulo-opinion">"Tu voz importa,❤️."</h3>
 
             <div className="campos">
               <label htmlFor="opinion">Tu opinión:</label>
@@ -190,7 +196,7 @@ const Contactos = () => {
             </div>
 
             <button type="submit" className="btn btn-primary" style={{ width: "100%" }}>
-              SUSCRÍBETE✌️😉
+              SUSCRÍBETE
             </button>
           </div>
         </form>
