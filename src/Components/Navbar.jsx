@@ -1,29 +1,37 @@
 import './navbar.css'
 import { Link } from 'react-router-dom';
+import { useEffect , useState } from 'react';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from '../firebase';
+
+import NavbarUsuario from './NavbarUsuario';
+import NavbarVisitante from './NavbarVisitante';
+
 
 function Navbar() {
-  return (
-    <header className="navbar">
-      <div className="contenedor">
-        <div className="contenido contenido flex flex-col sm:flex-row sm:justify-between sm:items-center">
+  const [usuario , setUsuario] = useState (null)
 
-          <div className="logo desktop-nav hidden sm:block">
-            <div className="logo-icono">C</div>
-            <span className="nombre">Conectándonos</span>
-          </div>
+  useEffect(() => {
+    const auth =getAuth(app);
 
-          <nav className="desktop-nav ">
-            <ul>
-              <li className='ml-5 text-gray-700 hover:text-gray-900'><Link to="/">Inicio</Link></li>
-              <li className='ml-5 text-gray-700 hover:text-gray-900'><Link to="/Informacion">Información</Link></li>
-              <li className='ml-5 text-gray-700 hover:text-gray-900'><Link to="/Nosotras">¿Quiénes somos?</Link></li>
-              <li className='ml-5 text-gray-700 hover:text-gray-900'><Link to="/Contacto">Contacto</Link></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
-  );
+    //detectar usuario 
+    const unsubcribe =onAuthStateChanged(auth,(user)=>
+    {
+      if (user){
+        setUsuario(user)
+      } else {
+        setUsuario(null)
+      }
+    });
+    return () => unsubcribe();
+  }, []);
+  
+  // nvavbar dinamico 
+  if (usuario) {
+    return <NavbarUsuario/>
+  }else{
+    return <NavbarVisitante/>
+  }
 }
 
 export default Navbar;

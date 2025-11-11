@@ -1,0 +1,90 @@
+/* Fondo general y centrado */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  background: linear-gradient(135deg, #e7eff6, #f3f7fa);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Caja del formulario */
+.login-box {
+  background-color: #ffffff;
+  padding: 2.5rem 3rem;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Pequeño efecto al pasar el mouse */
+.login-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* Título */
+.login-box h1 {
+  color: #1b3b3a;
+  margin-bottom: 1.8rem;
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+/* Campos de entrada */
+.login-box input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin: 0.6rem 0;
+  border-radius: 10px;
+  border: 1px solid #ccd5d8;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-box input:focus {
+  border-color: #1b8c7d;
+  box-shadow: 0 0 0 3px rgba(27, 140, 125, 0.15);
+}
+
+/* Botones */
+.login-box button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background-color: #1b8c7d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-box button:hover {
+  background-color: #157368;
+  transform: translateY(-2px);
+}
+
+/* Enlace para cambiar vista */
+.toggle-view {
+  margin-top: 1.3rem;
+  color: #1b3b3a;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .login-box {
+    width: 90%;
+    padding: 2rem;
+  }
+}
