@@ -1,0 +1,138 @@
+/* Fondo general de la sección */
+.encuesta {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;
+  background: #f5f7fb; /* gris muy clarito tipo dashboard */
+}
+
+/* Tarjeta principal */
+.encuesta .card-form {
+  background: #e9fbf7; /* verde menta muy suave */
+  max-width: 700px;
+  width: 100%;
+  padding: 40px 32px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  margin: 0 auto;
+}
+
+/* Si no quieres usar .card-form, aplica directo a .encuesta > form contenedor */
+.encuesta form {
+  background: #e9fbf7;
+  max-width: 700px;
+  width: 100%;
+  padding: 40px 32px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  margin: 0 auto;
+}
+
+/* Título y subtítulo */
+.encuesta .titulo {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #0f766e; /* verde teal */
+}
+
+.encuesta .subtitulo {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 32px;
+}
+
+/* Preguntas */
+.pregunta {
+  margin-bottom: 24px;
+}
+
+.pregunta label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+/* Inputs y selects */
+.pregunta select,
+.pregunta input[type="text"] {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 999px; /* bordes súper redondeados */
+  border: 1px solid #cbd5e1;
+  font-size: 0.95rem;
+  outline: none;
+  background-color: #ffffff;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.pregunta select:focus,
+.pregunta input[type="text"]:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+/* Botón */
+.btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 28px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #059669, #14b8a6);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(5, 150, 105, 0.4);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(5, 150, 105, 0.5);
+  filter: brightness(1.03);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(5, 150, 105, 0.35);
+}
+
+/* Resultado */
+.resultado {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #0f172a;
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 16px 20px;
+}
+
+.oculto {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .encuesta form {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+
+  .encuesta .titulo {
+    font-size: 1.7rem;
+  }
+}

@@ -1,0 +1,193 @@
+
+
+.comunidad-memphis {
+  background-color: #ffe480;
+  background-image: radial-gradient(#ffd84d 1px, transparent 1px),
+                    radial-gradient(#ffd84d 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  padding: 40px 20px;
+}
+
+/* 🎯 Tarjeta general más pequeña */
+.comunidad-card {
+  background: #fff9d6;
+  border: 3px solid #000;
+  border-radius: 16px;
+  box-shadow: 8px 8px 0 #000;
+  max-width: 420px; /* más compacto */
+  width: 100%;
+  text-align: center;
+  position: relative;
+  padding: 25px;
+  overflow: hidden;
+}
+
+/* 📸 Imagen de perfil */
+.comunidad-foto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #000;
+  margin-top: 10px;
+  object-fit: cover;
+  box-shadow: 5px 5px 0 #000;
+}
+
+/* 🧠 Contenido */
+.comunidad-content {
+  padding: 15px;
+}
+
+.titulo-comunidad {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.saludo {
+  font-size: 1rem;
+  color: #333;
+}
+
+.correo {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.separador {
+  margin: 20px auto;
+  width: 60%;
+  border: none;
+  border-top: 2px solid #000;
+}
+
+.editar-titulo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+/* 🧾 Formulario más pequeño y centrado */
+.editar-formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.editar-formulario input {
+  width: 85%;
+  padding: 8px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: transform 0.1s ease;
+}
+
+.editar-formulario input:focus {
+  transform: scale(1.03);
+  background-color: #fffdf2;
+}
+
+.editar-formulario button {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 8px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+
+.editar-formulario button:hover {
+  background-color: #ff66b3;
+  color: #000;
+  box-shadow: 3px 3px 0 #000;
+}
+
+/* 📝 Texto descriptivo */
+.descripcion {
+  font-size: 0.9rem;
+  color: #333;
+  padding: 0 10px;
+  line-height: 1.4;
+}
+
+/* 🟩 Fondos decorativos tipo Memphis */
+.comunidad-card::before,
+.comunidad-card::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 50px;
+  background-color: #84d6ff;
+  border: 2px solid #000;
+  z-index: -1;
+  transform: rotate(-5deg);
+}
+
+.comunidad-card::before {
+  top: -20px;
+  left: -25px;
+}
+
+.comunidad-card::after {
+  bottom: -20px;
+  right: -25px;
+  background-color: #ff91a4;
+}
+
+/* 📱 Responsivo */
+@media (max-width: 768px) {
+  .comunidad-card {
+    max-width: 90%;
+    padding: 20px;
+    box-shadow: 5px 5px 0 #000;
+  }
+
+  .titulo-comunidad {
+    font-size: 1.4rem;
+  }
+
+  .comunidad-foto {
+    width: 90px;
+    height: 90px;
+  }
+
+  .editar-formulario input {
+    width: 90%;
+    font-size: 0.85rem;
+  }
+
+  .editar-formulario button {
+    padding: 7px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-comunidad {
+    font-size: 1.2rem;
+  }
+
+  .comunidad-foto {
+    width: 80px;
+    height: 80px;
+  }
+
+  .editar-formulario input {
+    font-size: 0.8rem;
+  }
+}

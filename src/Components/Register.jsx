@@ -17,34 +17,73 @@ function RegistrarUsuario({ onRegister, cambiarVista }) {
       })
       .catch((error) => {
         console.log("Error al registrar el usuario:", error.message);
+        alert("Ocurrió un error al registrarte. Revisa tus datos.");
       });
   };
 
   return (
-    <div className="registro-container">
-      <h1>Registrar Usuario</h1>
+    <div className="registro-page">
+      {/* Panel izquierdo: texto */}
+      <div className="registro-left">
+        <p className="registro-pill">🤍 Bienestar emocional</p>
+        <h1 className="registro-title">Crea tu espacio seguro</h1>
+        <p className="registro-text">
+          Únete a <strong>Conectándonos</strong> y comienza a cuidar tu salud mental con
+          herramientas, recursos y una comunidad que te acompaña.
+        </p>
+        <div className="registro-highlight">
+          <span className="registro-number">+1500</span>
+          <span className="registro-highlight-text">
+            consultas acompañadas con empatía y profesionalismo.
+          </span>
+        </div>
+      </div>
 
-      <input
-        type="email"
-        placeholder="Escribe tu Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        
-      />
+      {/* Panel derecho: formulario */}
+      <div className="registro-card">
+        <h2 className="registro-card-title">Crear cuenta</h2>
+        <p className="registro-card-subtitle">
+          Regístrate con tu correo y comienza a conectar contigo misma 🧠💚
+        </p>
 
-      <input
-        type="password"
-        placeholder="Escribe tu Contraseña"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <div className="registro-form">
+          <label className="registro-label">
+            Correo electrónico
+            <input
+              type="email"
+              placeholder="Escribe tu email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
 
-      <button onClick={registrar}>Registrar</button>
-      <button onClick={cambiarVista}>Iniciar Sesión</button>
+          <label className="registro-label">
+            Contraseña
+            <input
+              type="password"
+              placeholder="Crea una contraseña segura"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
 
-      <p className="toggle-view" onClick={cambiarVista}>
-        ¿Ya tienes cuenta? Inicia sesión aquí
-      </p>
+          <button className="registro-btn-principal" onClick={registrar}>
+            Registrar
+          </button>
+
+          <button
+            type="button"
+            className="registro-btn-secundario"
+            onClick={cambiarVista}
+          >
+            Iniciar sesión
+          </button>
+
+          <p className="toggle-view" onClick={cambiarVista}>
+            ¿Ya tienes cuenta? <span>Inicia sesión aquí</span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

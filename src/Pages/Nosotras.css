@@ -1,52 +1,113 @@
-/* Estilos de la pagina ¿Quienes Somos?*/
+/* 🌸 Estilos de la página ¿Quiénes Somos? */
 .nosotras {
-  background: #ffffff;
-  padding: 30px;
+  background: transparent;
+  padding: 60px 20px;
+  text-align: center;
 }
 
-body.dark-mode .nosotras {
-  background: #1d1d1d;
-}
-
-.nosotras-caja {
-  padding: 40px;
-  border: 2px solid transparent;
-  border-radius: 25px;
-  font-size: 16px;
-  line-height: 1.8;
-  color: #374151;
-  transition: transform 0.4s all;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: #fafafa;
-}
-
-.nosotras-caja:hover {
-  background-color: #fbaf89;
-  transform: scale(1.02);
-}
-
-.nombres {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #374151;
-}
-
-.descripcion {
-  color: #374151;
-  margin-bottom: 24px;
-  line-height: 1.6;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-}
-
+/* Fondo principal con imagen */
 .fondo {
   background-image: url("Conentandonos1.jpeg");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 25px;
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Efecto sutil para que el texto resalte sin tapar la imagen */
+.fondo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2); /* muy tenue */
+  backdrop-filter: blur(2px);
+  z-index: 0;
+}
+
+/* Título principal */
+.titulo1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff; /* blanco para que contraste */
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Contenedor de las cajas */
 .cuadros {
-  margin: 10vh;
-  padding: 7vh;
-  gap: 7vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch; /* ✅ hace que las cajas midan igual */
+  gap: 2rem;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Tarjetas individuales */
+.nosotras-caja {
+  background-color: rgba(255, 255, 255, 0.15); /* ligera transparencia */
+  padding: 2rem;
+  border-radius: 20px;
+  color: #fff;
+  flex: 1 1 300px;
+  max-width: 450px;
+  min-height: 400px; /* ✅ fuerza misma altura base */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* distribuye contenido */
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nosotras-caja:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+}
+
+/* Nombres */
+.nombres {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Descripción */
+.descripcion {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  flex-grow: 1; /* ✅ permite que el texto se expanda sin romper altura */
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .titulo1 {
+    font-size: 2rem;
+  }
+
+  .cuadros {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nosotras-caja {
+    width: 100%;
+    max-width: 90%;
+    min-height: auto; /* ✅ ajusta altura automática en móvil */
+  }
+
+  .fondo {
+    padding: 40px 10px;
+  }
 }

@@ -1,94 +1,250 @@
-/* Fondo general y centrado */
-.registro-container {
+/* Fondo general tipo página wellness */
+.registro-page {
+  min-height: calc(100vh - 80px); /* para convivir con el navbar */
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 40px;
+  padding: 60px 40px;
+  background: radial-gradient(
+    circle at top left,
+    #fefce8,
+    #e5f3f0 40%,
+    #dde7f5
+  );
+}
+
+/* Panel izquierdo (texto inspiracional) */
+.registro-left {
+  max-width: 520px;
+}
+
+.registro-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(13, 148, 136, 0.08);
+  color: #047857;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.registro-title {
+  font-size: 2.6rem;
+  line-height: 1.15;
+  color: #0f172a;
+  margin-bottom: 14px;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+.registro-text {
+  font-size: 0.98rem;
+  color: #4b5563;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 90%;
+}
+
+.registro-highlight {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  background: white;
+  border-radius: 18px;
+  padding: 10px 16px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.registro-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f766e;
+}
+
+.registro-highlight-text {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+/* Tarjeta de formulario */
+.registro-card {
+  max-width: 420px;
+  margin-left: auto;
+  background: rgba(248, 250, 252, 0.96);
+  border-radius: 24px;
+  padding: 28px 24px 26px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.registro-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.registro-card-subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 18px;
+}
+
+/* Formulario */
+.registro-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 90vh;
-  background: linear-gradient(135deg, #e7eff6, #f3f7fa);
-  font-family: "Poppins", sans-serif;
+  gap: 14px;
 }
 
-/* Caja principal */
-.registro-container {
-  background-color: #ffffff;
-  padding: 2.5rem 3rem;
-  border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.registro-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-}
-
-/* Título */
-.registro-container h1 {
-  color: #1b3b3a;
-  margin-bottom: 1.8rem;
-  font-size: 1.9rem;
-  font-weight: 600;
-}
-
-/* Campos de entrada */
-.registro-container input {
-  width: 100%;
-  padding: 0.9rem 1rem;
-  margin: 0.6rem 0;
-  border-radius: 10px;
-  border: 1px solid #ccd5d8;
-  font-size: 1rem;
-  outline: none;
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.registro-container input:focus {
-  border-color: #1b8c7d;
-  box-shadow: 0 0 0 3px rgba(27, 140, 125, 0.15);
-}
-
-/* Botones */
-.registro-container button {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 0.9rem;
-  background-color: #2b9e4a; /* Verde suave distinto al login */
-  color: white;
-  border: none;
-  
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.2s ease;
-}
-
-.registro-container button:hover {
-  background-color: #22813c;
-  transform: translateY(-2px);
-}
-
-
-/* Enlace para cambiar vista */
-.toggle-view {
-  margin-top: 1.3rem;
-  color: #1b3b3a;
+.registro-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   font-size: 0.9rem;
-  text-decoration: underline;
-  cursor: pointer;
-  display: inline-block;
+  color: #374151;
 }
 
-.toggle-view:hover {
-  color: #1b8c7d;
+.registro-label input {
+  margin-top: 2px;
+  padding: 10px 11px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  outline: none;
+  font-size: 0.92rem;
+  color: #111827;
+  background: #f9fafb;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    transform 0.08s ease;
+}
+
+.registro-label input::placeholder {
+  color: #9ca3af;
+}
+
+.registro-label input:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.35);
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Botón principal */
+.registro-btn-principal {
+  margin-top: 6px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  color: #f9fafb;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(15, 118, 110, 0.45);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    filter 0.12s ease;
+}
+
+.registro-btn-principal:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(15, 118, 110, 0.55);
+  filter: brightness(1.05);
+}
+
+.registro-btn-principal:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.4);
+}
+
+/* Botón secundario */
+.registro-btn-secundario {
+  margin-top: 4px;
+  width: 100%;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #f9fafb;
+  color: #0f172a;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.12s ease,
+    transform 0.1s ease,
+    box-shadow 0.12s ease;
+}
+
+.registro-btn-secundario:hover {
+  background: #e5ecf2;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(148, 163, 184, 0.4);
+}
+
+.toggle-view {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.toggle-view span {
+  color: #0f766e;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.toggle-view:hover span {
+  color: #115e59;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .registro-page {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .registro-left {
+    margin: 0 auto;
+  }
+
+  .registro-text {
+    max-width: 100%;
+  }
+
+  .registro-highlight {
+    margin: 0 auto;
+  }
+
+  .registro-card {
+    margin: 10px auto 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .registro-page {
+    padding: 32px 16px;
+  }
+
+  .registro-title {
+    font-size: 2.1rem;
+  }
+
+  .registro-card {
+    padding: 22px 18px 20px;
+    border-radius: 20px;
+  }
 }

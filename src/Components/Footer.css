@@ -1,30 +1,38 @@
+/* ===== CONTENEDOR GENERAL DEL FOOTER ===== */
 .footer {
-  background: #374151;
-  color: #161313;
-  padding: 48px 0 16px;
+  background: #f3f4f6; /* gris muy clarito */
+  color: #111827;
+  padding: 40px 0 16px;
   position: relative;
   z-index: 10;
 }
 
+/* Caja del footer que se ve como tarjeta */
 .contenedor-footer {
+  max-width: auto;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 28px 24px 16px;
+  background: #e5edf3; /* tono parecido a tu navbar */
+  border-radius: 15px 15px 0 0;
+  box-shadow: 0 -4px 18px rgba(148, 163, 184, 0.4);
 }
 
+/* ===== CONTENIDO ===== */
 .contenido-footer {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
-  margin-bottom: 24px;
+  gap: 20px;
+  margin-bottom: 18px;
 }
 
 .marca-footer {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: bold;
+  gap: 10px;
+  font-weight: 700;
   font-size: 18px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+  color: #0f172a;
 }
 
 .icono-marca {
@@ -37,21 +45,41 @@
   justify-content: center;
   color: white;
   font-weight: bold;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.35);
 }
 
 .texto-footer {
-  color: #9ca3af;
-  line-height: 1.6;
+  color: #4b5563;
+  line-height: 1.7;
+  font-size: 0.95rem;
 }
 
+/* línea con el corazón */
+.contenido-footer div > div:last-child {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+/* ===== PIE DE PÁGINA ===== */
 .pie {
-  border-top: 1px solid #4b5563;
-  padding-top: 12px;
+  border-top: 1px solid rgba(148, 163, 184, 0.8);
+  padding-top: 10px;
   text-align: center;
-  color: #9ca3af;
-  font-size: 14px;
+  color: #6b7280;
+  font-size: 0.85rem;
 }
 
-.contenedor-footer {
-  background-color: #dee3e7;
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .contenedor-footer {
+    padding: 22px 16px 12px;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .contenido-footer {
+    gap: 16px;
+  }
 }

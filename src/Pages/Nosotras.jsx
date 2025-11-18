@@ -3,6 +3,7 @@ import './Nosotras.css'
 function Nosotras (){
     return(
         <>
+        
     <section id="servicios" className="nosotras mx-auto py-10 px-6 max-w-5xl">
       <div className='px-12 py-5 fondo' > 
         <div>
