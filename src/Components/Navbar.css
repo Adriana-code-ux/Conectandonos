@@ -233,6 +233,8 @@ body.dark .btn-darkmode {
   box-shadow: 0 6px 14px rgba(4, 120, 87, 0.35);
 }
 
+
+
 /* Responsive: botones apilados si es necesario */
 @media (max-width: 768px) {
   .nav-actions {

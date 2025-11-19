@@ -1,113 +1,262 @@
-/* 🌸 Estilos de la página ¿Quiénes Somos? */
-.nosotras {
-  background: transparent;
-  padding: 60px 20px;
-  text-align: center;
-}
+/* ===== HERO PRINCIPAL ===== */
 
-/* Fondo principal con imagen */
-.fondo {
-  background-image: url("Conentandonos1.jpeg");
+.nosotras-hero {
+  width: 100%;
+  min-height: 70vh;
+  background-image: url("/nosotras-hero.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 25px;
-  padding: 60px 20px;
   position: relative;
-  overflow: hidden;
-}
-
-/* Efecto sutil para que el texto resalte sin tapar la imagen */
-.fondo::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.2); /* muy tenue */
-  backdrop-filter: blur(2px);
-  z-index: 0;
-}
-
-/* Título principal */
-.titulo1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #fff; /* blanco para que contraste */
-  margin-bottom: 2rem;
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* Contenedor de las cajas */
-.cuadros {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  align-items: stretch; /* ✅ hace que las cajas midan igual */
-  gap: 2rem;
-  margin-top: 2rem;
-  position: relative;
-  z-index: 1;
 }
 
-/* Tarjetas individuales */
-.nosotras-caja {
-  background-color: rgba(255, 255, 255, 0.15); /* ligera transparencia */
-  padding: 2rem;
-  border-radius: 20px;
-  color: #fff;
-  flex: 1 1 300px;
-  max-width: 450px;
-  min-height: 400px; /* ✅ fuerza misma altura base */
+.nosotras-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(15, 23, 42, 0.75),
+    rgba(15, 23, 42, 0.35),
+    rgba(15, 23, 42, 0.1)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nosotras-hero-content {
+  position: relative;
+  max-width: 600px;
+  padding: 40px;
+  margin-left: 8%;
+  color: #f9fafb;
+}
+
+.nosotras-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.9);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.nosotras-hero-title {
+  font-size: 2.8rem;
+  line-height: 1.15;
+  font-weight: 800;
+  margin-bottom: 12px;
+  text-shadow: 0 8px 25px rgba(15, 23, 42, 0.9);
+}
+
+.nosotras-hero-subtitle {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #e5e7eb;
+  max-width: 520px;
+}
+
+/* ===== SECCIONES GENERALES ===== */
+
+.nosotras-equipo,
+.nosotras-vision-mision,
+.nosotras-final {
+  padding: 64px 20px;
+  background: #f3f4f6;
+}
+
+.nosotras-vision-mision {
+  background: #e6f2ee;
+}
+
+.nosotras-final {
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.nosotras-equipo-inner,
+.nosotras-vision-mision-inner,
+.nosotras-final-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Titulares y textos generales */
+
+.nosotras-section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.nosotras-section-text {
+  font-size: 0.98rem;
+  color: #4b5563;
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 32px;
+}
+
+/* ===== CARDS DE CAMILA Y ADRIANA ===== */
+
+.nosotras-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.nosotras-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px 22px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.10);
+  border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* distribuye contenido */
-  transition: all 0.3s ease;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  gap: 6px;
 }
 
-.nosotras-caja:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-5px);
+.nosotras-card-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
 }
 
-/* Nombres */
-.nombres {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 12px;
+.nosotras-card-role {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #0f766e;
 }
 
-/* Descripción */
-.descripcion {
-  font-size: 1rem;
-  line-height: 1.6;
-  font-family: "Poppins", sans-serif;
-  flex-grow: 1; /* ✅ permite que el texto se expanda sin romper altura */
+.nosotras-card-text {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.7;
+  margin-top: 8px;
 }
 
-/* 📱 Responsive */
+/* ===== VISIÓN Y MISIÓN ===== */
+
+.nosotras-vision-mision-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.nosotras-vm-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px 20px;
+  border: 1px solid #d1e3dd;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
+}
+
+.nosotras-vm-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.nosotras-vm-text {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+/* ===== SECCIÓN FINAL / FORMULARIO ===== */
+
+.nosotras-final-inner {
+  max-width: 900px;
+}
+
+.nosotras-formulario-caja {
+  margin-top: 24px;
+  background: #f1f5f9;
+  border-radius: 18px;
+  padding: 24px 20px;
+  border: 1px solid #d1d5db;
+}
+
+.nosotras-formulario-texto {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 992px) {
+  .nosotras-hero-title {
+    font-size: 2.3rem;
+  }
+
+  .nosotras-hero-content {
+    margin-left: 6%;
+    padding: 32px;
+  }
+
+  .nosotras-cards,
+  .nosotras-vision-mision-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
-  .titulo1 {
+  .nosotras-hero {
+    min-height: 60vh;
+  }
+
+  .nosotras-hero-overlay {
+    justify-content: center;
+  }
+
+  .nosotras-hero-content {
+    margin-left: 0;
+    padding: 28px 20px;
+    text-align: center;
+  }
+
+  .nosotras-hero-title {
     font-size: 2rem;
   }
 
-  .cuadros {
-    flex-direction: column;
-    align-items: center;
+  .nosotras-hero-subtitle {
+    font-size: 0.95rem;
+    margin: 0 auto;
   }
 
-  .nosotras-caja {
-    width: 100%;
-    max-width: 90%;
-    min-height: auto; /* ✅ ajusta altura automática en móvil */
+  .nosotras-section-title {
+    font-size: 1.6rem;
   }
 
-  .fondo {
-    padding: 40px 10px;
+  .nosotras-section-text {
+    font-size: 0.94rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nosotras-hero-title {
+    font-size: 1.7rem;
+  }
+
+  .nosotras-hero-content {
+    padding: 24px 16px;
+  }
+
+  .nosotras-equipo,
+  .nosotras-vision-mision,
+  .nosotras-final {
+    padding: 40px 16px;
   }
 }

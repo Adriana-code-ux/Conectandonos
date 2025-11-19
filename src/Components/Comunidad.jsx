@@ -137,151 +137,190 @@ function Comunidad() {
   };
 
   return (
-    <section className="comunidad-memphis">
-      <div className="comunidad-card">
-        {/* INFO USUARIO */}
-        <div className="comunidad-header">
-         <img src="/Fotod.jpg" alt="Foto de perfil" className="w-32 h-32 mx-auto rounded-full mb-4"/>
-
-          <div className="comunidad-content">
-            <h1 className="titulo-comunidad">Bienvenido a la Comunidad</h1>
-            <p className="saludo">
-              Hola, <strong>{nombre}</strong>
+  <section className="comunidad-layout">
+    <div className="comunidad-wrapper solo-card">
+      {/* CAJA ÚNICA ESTILO LUXUS (CENTRADA) */}
+      <div className="comunidad-luxus-card">
+        {/* Semicírculo superior */}
+        <div className="luxus-header-curve">
+          <div className="luxus-rays" />
+          <div className="luxus-header-inner">
+            <h2 className="luxus-title">Comunidad Conectándonos</h2>
+            <p className="luxus-subtitle">
+              Un espacio tranquilo para compartir, escuchar y acompañar.
             </p>
-            <p className="correo">Tu correo: {email}</p>
           </div>
         </div>
 
-        <hr className="separador" />
+        {/* IMAGEN CENTRAL – AHORA LA ILUSTRACIÓN QUE TE GUSTA */}
+        <div className="luxus-image-wrapper">
+          <img
+            src="https://plus.unsplash.com/premium_vector-1745401592354-1b92dfca051f?q=80&w=725&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Ilustración comunidad"
+            className="luxus-main-image"
+          />
+        </div>
 
-        {/* EDITAR PERFIL */}
-        <div className="editar-perfil-bloque">
-          <h2 className="editar-titulo">Editar perfil</h2>
+        {/* CONTENIDO PRINCIPAL */}
+        <div className="luxus-content">
+          <h3 className="luxus-section-title">Bienvenido a la Comunidad</h3>
+          <p className="luxus-welcome-text">
+            Hola, <strong>{nombre}</strong> · Tu correo: <span>{email}</span>
+          </p>
 
-          <div className="editar-formulario">
-            <input
-              type="text"
-              placeholder="Actualizar mi nombre"
-              value={nuevoNombre}
-              onChange={(e) => setNuevoNombre(e.target.value)}
+          <div className="luxus-divider" />
+
+          {/* EDITAR PERFIL */}
+          <div className="editar-perfil-bloque">
+            <h4 className="editar-titulo">Editar perfil</h4>
+
+            <div className="editar-formulario">
+              <input
+                type="text"
+                placeholder="Actualizar mi nombre"
+                value={nuevoNombre}
+                onChange={(e) => setNuevoNombre(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Actualizar mi foto (URL)"
+                value={nuevaFoto}
+                onChange={(e) => setNuevaFoto(e.target.value)}
+              />
+              <button onClick={actualizarPerfil} className="btn-primario">
+                Actualizar perfil
+              </button>
+            </div>
+          </div>
+
+          <div className="luxus-divider" />
+
+          {/* CREAR POST */}
+          <div className="crear-post-bloque">
+            <h4 className="subtitulo-comunidad">Crear una publicación</h4>
+
+            <textarea
+              className="textarea-post"
+              placeholder="¿Qué estás pensando?"
+              value={contenidoPost}
+              onChange={(e) => setContenidoPost(e.target.value)}
             />
-            <input
-              type="text"
-              placeholder="Actualizar mi foto (URL)"
-              value={nuevaFoto}
-              onChange={(e) => setNuevaFoto(e.target.value)}
-            />
-            <button onClick={actualizarPerfil} className="btn-primario">
-              Actualizar perfil
+
+            <button onClick={crearPost} className="btn-secundario">
+              Publicar
             </button>
           </div>
-        </div>
 
-        <hr className="separador" />
+          <div className="luxus-divider" />
 
-        {/* CREAR POST */}
-        <div className="crear-post-bloque">
-          <h2 className="subtitulo-comunidad">Crear una publicación</h2>
+          {/* LISTA DE POSTS */}
+          <div className="posts-bloque">
+            <h4 className="subtitulo-comunidad">Publicaciones</h4>
 
-          <textarea
-            className="textarea-post"
-            placeholder="¿Qué estás pensando?"
-            value={contenidoPost}
-            onChange={(e) => setContenidoPost(e.target.value)}
-          />
+            <div className="lista-posts">
+              {posts.length === 0 && (
+                <p className="texto-sin-posts">
+                  Aún no hay publicaciones. ¡Sé la primera en compartir algo! 💬
+                </p>
+              )}
 
-          <button onClick={crearPost} className="btn-secundario">
-            Publicar
-          </button>
-        </div>
-
-        <hr className="separador" />
-
-        {/* LISTADO DE PUBLICACIONES */}
-        <div className="posts-bloque">
-          <h2 className="subtitulo-comunidad">Publicaciones</h2>
-
-          <div className="lista-posts">
-            {posts.length === 0 && (
-              <p className="texto-sin-posts">
-                Aún no hay publicaciones. ¡Sé la primera en compartir algo! 💬
-              </p>
-            )}
-
-            {posts.map((post) => (
-              <div key={post.id} className="post-card">
-                {/* Autor */}
-                <div className="post-autor">
-                  <img
-                    src={post.autorFoto || "/Fotod.jpg"}
-                    alt="Autor"
-                    className="w-10 h-10 rounded-full object-cover mr-3"
-                  />
-                  <div>
-                    <p className="post-autor-nombre">{post.autor}</p>
-                    <p className="post-fecha">{formatearFecha(post.fecha)}</p>
-                  </div>
-                </div>
-
-                {/* Contenido / Edición */}
-                {editandoID === post.id ? (
-                  <div className="post-edicion">
-                    <textarea
-                      className="textarea-post"
-                      value={nuevoContenido}
-                      onChange={(e) => setNuevoContenido(e.target.value)}
+              {posts.map((post) => (
+                <div key={post.id} className="post-card">
+                  {/* Autor */}
+                  <div className="post-autor">
+                    <img
+                      src={post.autorFoto || "/Fotod.jpg"}
+                      alt="Autor"
+                      className="post-avatar"
                     />
-                    <div className="post-edicion-botones">
-                      <button
-                        onClick={() => guardarEdicion(post.id)}
-                        className="btn-guardar"
-                      >
-                        Guardar
-                      </button>
-                      <button
-                        onClick={() => setEditandoID(null)}
-                        className="btn-cancelar"
-                      >
-                        Cancelar
-                      </button>
+                    <div>
+                      <p className="post-autor-nombre">{post.autor}</p>
+                      <p className="post-fecha">
+                        {formatearFecha(post.fecha)}
+                      </p>
                     </div>
                   </div>
-                ) : (
-                  <p className="post-contenido">{post.contenido}</p>
-                )}
 
-                {/* Botones solo autor */}
-                {post.autorUid === uid && editandoID !== post.id && (
-                  <div className="post-acciones">
-                    <button
-                      onClick={() => {
-                        setEditandoID(post.id);
-                        setNuevoContenido(post.contenido);
-                      }}
-                      className="btn-editar"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      onClick={() => eliminarPost(post.id)}
-                      className="btn-eliminar"
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                )}
+                  {/* Contenido / Edición */}
+                  {editandoID === post.id ? (
+                    <div className="post-edicion">
+                      <textarea
+                        className="textarea-post"
+                        value={nuevoContenido}
+                        onChange={(e) => setNuevoContenido(e.target.value)}
+                      />
+                      <div className="post-edicion-botones">
+                        <button
+                          onClick={() => guardarEdicion(post.id)}
+                          className="btn-guardar"
+                        >
+                          Guardar
+                        </button>
+                        <button
+                          onClick={() => setEditandoID(null)}
+                          className="btn-cancelar"
+                        >
+                          Cancelar
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="post-contenido">{post.contenido}</p>
+                  )}
+
+                  {/* Botones solo autor */}
+                  {post.autorUid === uid && editandoID !== post.id && (
+                    <div className="post-acciones">
+                      <button
+                        onClick={() => {
+                          setEditandoID(post.id);
+                          setNuevoContenido(post.contenido);
+                        }}
+                        className="btn-editar"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        onClick={() => eliminarPost(post.id)}
+                        className="btn-eliminar"
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* DESCRIPCIÓN + AVATAR USUARIO ABAJO */}
+          <div className="luxus-footer">
+            <p className="descripcion">
+              Aquí podrás interactuar con otros usuarios y compartir tus ideas.
+            </p>
+
+            <div className="luxus-user-footer">
+              <img
+                src={foto || "/Fotod.jpg"}
+                alt="Foto de perfil"
+                className="luxus-user-avatar"
+              />
+              <div>
+                <p className="luxus-user-name">{nombre}</p>
+                <p className="luxus-user-text">Mi espacio en la comunidad</p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
-
-        <hr className="my-6" />
-        <p className="descripcion">
-          Aquí podrás interactuar con otros usuarios y compartir tus ideas.
-        </p>
       </div>
-    </section>
-  );
+    </div>
+
+    {/* borde inferior */}
+    <div className="comunidad-bottom-border" />
+  </section>
+);
+
+
 }
 
 export default Comunidad;
