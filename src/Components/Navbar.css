@@ -1,17 +1,16 @@
-/* Contenedor general reutilizado */
+/* Contenedor general */
 .contenedor {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* ===== NAVBAR MODERNO ===== */
-
+/* ===== NAVBAR ===== */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: #e5ecf2; /* similar a tu captura */
+  background-color: #e5ecf2;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(148, 163, 184, 0.3);
 }
@@ -21,6 +20,8 @@
   align-items: center;
   justify-content: space-between;
   height: 72px;
+  gap: 12px;
+  padding: 0 12px; /* padding para que logo no quede pegado en mobile */
 }
 
 /* Logo */
@@ -50,7 +51,7 @@
   letter-spacing: 0.02em;
 }
 
-/* Links */
+/* ===== LINKS ===== */
 .nav-links ul {
   display: flex;
   list-style: none;
@@ -70,7 +71,6 @@
   transition: color 0.2s ease;
 }
 
-/* subrayado suave en hover/activo */
 .nav-link::after,
 .nav-links a::after {
   content: "";
@@ -94,7 +94,6 @@
   width: 100%;
 }
 
-/* estado activo (ruta actual) */
 .nav-link.active,
 .nav-links a.active {
   color: #0f172a;
@@ -106,23 +105,23 @@
   width: 100%;
 }
 
-/* Botón modo oscuro */
-.btn-darkmode {
+/* ===== BOTONES ===== */
+.btn-darkmode,
+.btn-logout {
   padding: 8px 18px;
-  margin-left: 16px;
   border-radius: 999px;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  background: #0f766e;
-  color: #f9fafb;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, filter 0.15s ease;
+}
+
+.btn-darkmode {
+  margin-left: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #0f766e;
+  color: #f9fafb;
   box-shadow: 0 8px 18px rgba(15, 118, 110, 0.35);
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.15s ease,
-    filter 0.15s ease;
 }
 
 .btn-darkmode:hover {
@@ -136,56 +135,11 @@
   box-shadow: 0 6px 14px rgba(15, 118, 110, 0.35);
 }
 
-/* ===== TEMA OSCURO ===== */
-
-body.dark {
-  background-color: #020617;
-  color: #e5e7eb;
-}
-
-body.dark .navbar {
-  background-color: rgba(15, 23, 42, 0.96);
-  border-bottom-color: rgba(30, 64, 175, 0.5);
-}
-
-body.dark .nav-link,
-body.dark .nav-links a {
-  color: #cbd5f5;
-}
-
-body.dark .nav-link:hover,
-body.dark .nav-links a:hover {
-  color: #ffffff;
-}
-
-body.dark .btn-darkmode {
-  background: #e2e8f0;
-  color: #0f172a;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.6);
-}
-/* Contenedor de acciones (modo oscuro + logout) */
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* Botón cerrar sesión */
 .btn-logout {
-  padding: 8px 18px;
-  border-radius: 999px;
   border: none;
   background: #059669;
   color: #f9fafb;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
   box-shadow: 0 8px 18px rgba(4, 120, 87, 0.35);
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.15s ease,
-    filter 0.15s ease;
 }
 
 .btn-logout:hover {
@@ -199,69 +153,137 @@ body.dark .btn-darkmode {
   box-shadow: 0 6px 14px rgba(4, 120, 87, 0.35);
 }
 
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* ===== HAMBURGUESA ===== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
 }
 
-.btn-logout {
-  padding: 8px 18px;
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #0f172a;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+body.dark .hamburger span {
+  background-color: #f9fafb;
+}
+
+/* ===== MENÚ MÓVIL ===== */
+.nav-links-mobile {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+body.dark .nav-links-mobile {
+  background-color: #1e293b;
+}
+
+.nav-links-mobile a,
+.nav-links-mobile button {
+  text-align: center;
+  font-size: 1rem;
+  padding: 8px 12px;
   border-radius: 999px;
+  transition: background 0.2s ease;
+}
+
+.nav-links-mobile a:hover,
+.nav-links-mobile button:hover {
+  background-color: rgba(13, 148, 136, 0.1);
+  color: #0d9488;
+}
+
+.nav-links-mobile button {
   border: none;
   background: #059669;
-  color: #f9fafb;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 8px 18px rgba(4, 120, 87, 0.35);
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.15s ease,
-    filter 0.15s ease;
-}
-
-.btn-logout:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 26px rgba(4, 120, 87, 0.45);
-  filter: brightness(1.05);
-}
-
-.btn-logout:active {
-  transform: translateY(0);
-  box-shadow: 0 6px 14px rgba(4, 120, 87, 0.35);
-}
-
-
-
-/* Responsive: botones apilados si es necesario */
-@media (max-width: 768px) {
-  .nav-actions {
-    margin-top: 8px;
-    width: 100%;
-    justify-content: center;
-  }
+  color: #fff;
+  width: 100%;
 }
 
 /* ===== RESPONSIVE ===== */
-
 @media (max-width: 768px) {
-  .navbar-inner {
-    flex-wrap: wrap;
-    gap: 12px;
-    height: auto;
-    padding-top: 12px;
-    padding-bottom: 12px;
+  .nav-links ul {
+    display: none;
   }
 
-  .nav-links ul {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-inner {
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
+    justify-content: space-between;
+    padding: 12px 16px; /* padding extra en mobile para que logo no quede pegado */
   }
 
   .btn-darkmode {
     margin-left: 0;
   }
+}
+/* Menú lateral */
+.nav-links-mobile {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 250px;
+  background-color: #ffffff;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: right 0.3s ease;
+  z-index: 100;
+}
+
+body.dark .nav-links-mobile {
+  background-color: #1e293b;
+}
+
+.nav-links-mobile.open {
+  right: 0;
+}
+
+.nav-links-mobile ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-links-mobile a,
+.nav-links-mobile button {
+  font-size: 1.1rem;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.nav-links-mobile a:hover,
+.nav-links-mobile button:hover {
+  background-color: rgba(13,148,136,0.1);
+  color: #0d9488;
+}
+
+.nav-links-mobile button {
+  border: none;
+  background: #059669;
+  color: #fff;
+  width: 100%;
 }
