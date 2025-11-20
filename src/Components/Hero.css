@@ -1,168 +1,220 @@
-/* ===== HERO ESTILO TARJETAS ===== */
+/* Importar fuentes para el diseño elegante */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+/* ===== SECCIÓN 1: HERO CON TU IMAGEN ORIGINAL Y TEXTO CENTRADO ===== */
 
 .inicio {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 72px);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 96px 24px 64px;
+  align-items: center; /* Centrar contenido verticalmente */
+  justify-content: center; /* Centrar contenido horizontalmente */
+  padding: 96px 24px 72px;
   z-index: 1;
+  text-align: center;
 }
 
-/* Fondo */
-.style {
-  position: absolute;
-  inset: 0;
-  background: url("https://plus.unsplash.com/premium_vector-1726662901672-e9d6d1600350?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-    center center / cover no-repeat;
-  z-index: -2;
-  opacity: 0.7;
-}
-
-/* Capa para que se lea bien encima del fondo */
+/* Fondo: Tu imagen original */
 .inicio::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(15, 23, 42, 0.3),
-    rgba(248, 250, 252, 0.25)
-  );
-  backdrop-filter: blur(2px);
+  /* >>>>>> TU IMAGEN ORIGINAL DE ILUSTRACIÓN <<<<<< */
+  background: url("https://plus.unsplash.com/premium_vector-1745021797622-8548d948bf87?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+    center center / cover no-repeat;
+  z-index: -2;
+}
+
+/* Capa oscura suave para legibilidad del texto */
+.inicio::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Capa ligeramente más oscura que antes para asegurar contraste sobre la ilustración colorida */
+  background: rgba(15, 23, 42, 0.45); 
   z-index: -1;
 }
 
-/* Grid principal (dos columnas) */
-.hero-content {
-  position: relative;
-  max-width: 1100px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  gap: 32px;
-  align-items: center;
+/* Contenedor del texto y botones centrados */
+.hero-centered-content {
+  max-width: 800px;
+  color: #f8f8f8;
+  z-index: 5;
+  padding: 20px;
 }
 
-/* Tarjeta principal */
-.hero-main-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 24px;
-  padding: 32px 32px 28px;
-  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.25);
-}
-
-/* Badge */
-.caja-pequeña {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(13, 148, 136, 0.08);
-  padding: 8px 16px;
-  border-radius: 999px;
-  margin-bottom: 18px;
-  font-size: 0.9rem;
-  color: #0f172a;
-}
-
-/* Título */
-.hero-title {
-  font-family: "Georgia", "Times New Roman", serif;
-  font-size: 2.8rem;
+/* Título principal con estilo de letra y tamaño mejorado */
+.hero-main-title {
+  font-family: "Playfair Display", serif;
+  font-size: 3.8rem;
   line-height: 1.1;
-  margin-bottom: 16px;
-  color: #0f172a;
-  font-weight: 700;
+  color: #ffffff; 
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Sombra más fuerte para mejor contraste */
 }
 
-/* Texto */
-.hero-text {
-  font-size: 0.98rem;
+/* Subtítulo con estilo de letra y tamaño mejorado */
+.hero-subtitle {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.3rem;
   line-height: 1.6;
+  color: #e0e0e0;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Contenedor de botones */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Botón primario (negro con texto claro) */
+.btn-primary {
+  background-color: #1a202c; 
+  color: #ffffff;
+  border: 2px solid #1a202c;
+  padding: 12px 28px;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #000000;
+  border-color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Botón secundario (bordeado con texto claro) */
+.btn-secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff; 
+  padding: 12px 28px;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* --- */
+
+/* ===== SECCIÓN 2: BLOQUE CLARITO INFERIOR (Sin cambios) ===== */
+
+.inicio-secundario {
+  background: #f7f4eb;
+  padding: 64px 24px 72px;
+}
+
+.inicio-secundario-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: flex-start;
+}
+
+.inicio-secundario-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.inicio-secundario-parrafo {
+  font-size: 0.98rem;
+  line-height: 1.8;
   color: #4b5563;
 }
 
-/* Tarjeta lateral derecha */
-.hero-side-card {
-  background: rgba(15, 23, 42, 0.93);
-  color: #e5e7eb;
-  border-radius: 20px;
-  padding: 24px 22px;
-  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.7);
-  text-align: center;
+.inicio-lateral-title {
+  font-size: 1.4rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #374151;
+  margin-bottom: 10px;
 }
 
-/* Caja del número */
-.caja-pequeña2 {
-  font-size: 60px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: rgba(148, 163, 184, 0.12);
-  padding: 10px 22px;
-  border-radius: 18px;
-  margin-bottom: 16px;
+.inicio-lateral-text {
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: #4b5563;
 }
 
-.counter {
-  font-weight: 700;
-}
-
-/* Texto debajo del número */
-.hero-side-text {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #cbd5f5;
-}
+/* --- */
 
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 900px) {
-  .inicio {
-    padding: 90px 20px 56px;
-  }
+    .inicio {
+        min-height: 60vh;
+        padding: 60px 20px;
+    }
 
-  .hero-content {
-    grid-template-columns: minmax(0, 1fr);
-  }
+    .hero-main-title {
+        font-size: 2.8rem;
+        margin-bottom: 15px;
+    }
 
-  .hero-main-card {
-    margin-bottom: 12px;
-  }
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
 
-  .hero-title {
-    font-size: 2.2rem;
-  }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
 
-  .caja-pequeña2 {
-    font-size: 42px;
-  }
+    .btn-primary, .btn-secondary {
+        width: 80%;
+        max-width: 300px;
+        padding: 10px 20px;
+    }
+
+    .inicio-secundario-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+    }
 }
 
 @media (max-width: 600px) {
-  .inicio {
-    padding: 80px 16px 48px;
-  }
+    .inicio {
+        min-height: 50vh;
+        padding: 40px 16px;
+    }
 
-  .hero-main-card {
-    padding: 24px 20px;
-  }
+    .hero-main-title {
+        font-size: 2.2rem;
+    }
 
-  .hero-title {
-    font-size: 1.9rem;
-  }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
 
-  .hero-text {
-    font-size: 0.95rem;
-  }
-
-  .caja-pequeña,
-  .caja-pequeña2 {
-    flex-direction: column;
-    gap: 4px;
-    text-align: center;
-  }
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
 }

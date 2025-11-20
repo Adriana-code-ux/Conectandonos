@@ -1,45 +1,50 @@
 // src/components/Hero.jsx
-import './hero.css';
+import "./hero.css";
 
 function Hero() {
   return (
     <>
+      {/* SECCIÓN 1: hero con la imagen de fondo, texto y botones centrados */}
       <section className="inicio">
-        <div className="hero-content">
-          {/* Columna izquierda: título + texto */}
-          <div className="hero-main-card">
-            <div className="caja-pequeña">
-              <span>❤️</span>
-              <span>Cuidamos tu bienestar mental</span>
-            </div>
+        <div className="hero-centered-content"> {/* Nuevo contenedor centrado */}
+          <h1 className="hero-main-title">
+            Tu salud mental es nuestra prioridad
+          </h1>
+          <p className="hero-subtitle">
+            Te acompañamos con recursos, comunidad y apoyo profesional, estés donde estés.
+          </p>
+          <div className="hero-buttons">
+            <button className="btn-primary">Explora Recursos</button>
+            <button className="btn-secondary">Conócenos</button>
+          </div>
+        </div>
+      </section>
 
-            <h1 className="hero-title">
-              Tu salud mental es nuestra prioridad
-            </h1>
-
-            <p className="hero-text">
-              Encuentra el apoyo profesional que necesitas para afrontar tus retos
-              emocionales y personales. Ofrecemos terapias especializadas, diseñadas
-              para tus necesidades, en un ambiente seguro, acogedor y completamente
-              confidencial, donde tu bienestar emocional es nuestra prioridad.
+      {/* SECCIÓN 2: bloque clarito inferior (sin cambios) */}
+      <section className="inicio-secundario">
+        <div className="inicio-secundario-inner">
+          <div className="inicio-texto-principal">
+            <h2 className="inicio-secundario-title">
+              Acompañamiento emocional y herramientas para tu bienestar
+            </h2>
+            <p className="inicio-secundario-parrafo">
+              En <strong>Conectándonos</strong> encontrarás recursos,
+              información y una comunidad que pone en el centro tu salud
+              emocional. Nuestro objetivo es ayudarte a reconocer tus
+              emociones, validar lo que sientes y recordarte que pedir ayuda
+              también es un acto de valentía.
             </p>
           </div>
 
-          {/* Columna derecha: contador / info extra */}
-          <div className="hero-side-card">
-            <div className="caja-pequeña2">
-              <span className="counter">
-                <strong>1500</strong>
-              </span>
-            </div>
-            <p className="hero-side-text">
-              ¡1500 consultas exitosas! Tu bienestar mental es nuestra prioridad.
+          <div className="inicio-texto-lateral">
+            <h3 className="inicio-lateral-title">Conecta con tu bienestar</h3>
+            <p className="inicio-lateral-text">
+              Explora artículos, ejercicios y espacios de reflexión pensados
+              para acompañarte en tu día a día. Da pequeños pasos, a tu ritmo,
+              hacia una relación más amable contigo misma.
             </p>
           </div>
         </div>
-
-        {/* Fondo */}
-        <div className="style"></div>
       </section>
     </>
   );
