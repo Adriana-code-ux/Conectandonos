@@ -1,157 +1,174 @@
-/* Fondo general de la sección */
+/* Importar fuentes si no están en tu HTML. Ejemplo: Open Sans */
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap'); */
+
+/* Definir la paleta de colores para dinamismo */
+:root {
+  --primary-color: #4BC0C8; /* Turquesa dinámico */
+  --light-bg-color: #f7feff; /* Fondo muy claro con toque azul */
+  --text-dark: #1e293b;
+  --text-medium: #64748b;
+  --border-light: #e2e8f0;
+}
+
+/* ===== Contenedor General y Tarjeta (Dinámico y Limpio) ===== */
 .test-section {
   min-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 16px;
-  background: #f4f6fb; /* gris muy clarito */
+  background: var(--light-bg-color); /* Fondo muy claro con toque de color */
 }
 
-/* Tarjeta del test */
+/* Tarjeta del test - Pura, pero con un borde y sombra suaves */
 .test-card {
-  background: #e8f9ff; /* azul cielo muy suave */
-  max-width: 720px;
+  background: #ffffff;
+  max-width: 600px;
   width: 100%;
-  padding: 36px 32px;
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  padding: 40px 32px;
+  border-radius: 12px; /* Más redondeado para amabilidad */
+  /* Reintroducimos una sombra suave y profesional */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-light);
 }
 
-/* Títulos */
+/* Títulos - Fuente clara y amigable */
 .test-title {
-  text-align: center;
+  text-align: center; 
   font-size: 2rem;
   font-weight: 700;
-  color: #0369a1; /* azul bonito */
-  margin-bottom: 8px;
+  color: var(--primary-color); /* Color principal dinámico */
+  margin-bottom: 5px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .test-subtitle {
   text-align: center;
   font-size: 0.95rem;
-  color: #64748b;
-  margin-bottom: 24px;
+  color: var(--text-medium);
+  margin-bottom: 30px;
 }
 
-/* Barra de progreso */
+/* ===== Barra de progreso (Color dinámico) ===== */
 .progress-container {
-  background-color: #e5e7eb;
+  background-color: #e5f6ff; /* Fondo muy claro de la barra */
   border-radius: 999px;
   overflow: hidden;
-  height: 10px;
-  margin-bottom: 24px;
+  height: 8px; /* Un poco más gruesa para visibilidad */
+  margin-bottom: 30px;
 }
 
 .progress-bar {
   height: 100%;
   width: 0;
-  background: linear-gradient(135deg, #0ea5e9, #22c55e);
+  background: var(--primary-color); /* Usamos el color de acento dinámico */
   transition: width 0.3s ease;
 }
 
-/* Pregunta y opciones */
-.test-form {
-  margin-top: 8px;
-}
-
+/* ===== Pregunta y opciones (Interactividad) ===== */
 .question-text {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #0f172a;
-  margin-bottom: 16px;
+  color: var(--text-dark);
+  margin-bottom: 15px;
 }
 
 .options-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 30px;
 }
 
+/* Estilo de la opción individual (Interactiva) */
 .option-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 12px;
+  /* Mantener el mismo estilo de lista limpia */
+  padding: 14px 20px;
+  border-radius: 8px; 
   background-color: #ffffff;
-  border: 1px solid #dbe3f0;
+  border: 2px solid var(--border-light); /* Borde más visible */
   cursor: pointer;
   transition:
     border-color 0.2s ease,
-    box-shadow 0.2s ease,
     background 0.2s ease;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+/* Efecto hover: Resalta con color de acento */
+.option-item:hover {
+  border-color: var(--primary-color); /* Borde dinámico en hover */
+  background-color: #f0fcff; /* Fondo muy suave en hover */
+}
+
+/* Estilo para cuando la opción está seleccionada (Checked) */
+.option-item input[type="radio"]:checked + span {
+    color: var(--text-dark);
+    font-weight: 700;
 }
 
 .option-item input[type="radio"] {
-  accent-color: #0ea5e9; /* color del check en navegadores que lo soportan */
+  accent-color: var(--primary-color); /* El check usa el color dinámico */
+  width: 18px;
+  height: 18px;
 }
 
-.option-item:hover {
-  border-color: #0ea5e9;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
-  background-color: #f9feff;
-}
-
-/* Botones */
+/* ===== Botones (Con Sombra y Color Dinámico) ===== */
 .btn-next,
 .btn-submit {
-  display: inline-block;
+  display: block;
+  width: 100%;
+  max-width: 250px;
   margin-left: auto;
-  padding: 10px 26px;
-  border-radius: 999px;
+  margin-right: auto; 
+  padding: 12px 26px;
+  border-radius: 50px; /* Completamente redondeado para dinamismo */
   border: none;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
-  background: linear-gradient(135deg, #0ea5e9, #22c55e);
+  background: var(--primary-color); /* Color de acento dinámico */ 
   color: #ffffff;
-  box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    filter 0.15s ease;
+  /* Sombra para darle profundidad y hacerlo dinámico */
+  box-shadow: 0 8px 15px rgba(75, 192, 200, 0.4); 
+  transition: all 0.2s ease;
 }
 
 .btn-next:hover,
 .btn-submit:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 30px rgba(14, 165, 233, 0.55);
-  filter: brightness(1.03);
+  /* Efecto de "lift" para interactividad */
+  transform: translateY(-2px); 
+  background: #38a1ac; 
+  box-shadow: 0 10px 20px rgba(75, 192, 200, 0.6);
 }
 
-.btn-next:active,
-.btn-submit:active {
-  transform: translateY(0);
-  box-shadow: 0 8px 18px rgba(14, 165, 233, 0.35);
-}
-
-/* Resultado */
+/* ===== Resultado (Caja de mensaje positiva y clara) ===== */
 .result-box {
-  margin-top: 16px;
-  background: #f9fafb;
-  border-radius: 18px;
-  padding: 20px 22px;
+  margin-top: 25px;
+  background: #f0fcff; /* Fondo muy pálido de acento */
+  border-radius: 8px;
+  padding: 25px 22px;
   text-align: center;
-  color: #0f172a;
+  color: var(--text-dark);
+  border: 1px solid var(--primary-color);
 }
 
 .result-box h3 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 8px;
-  color: #0369a1;
+  margin-bottom: 10px;
 }
 
-/* Responsive */
+/* ===== Responsive (Mantenemos los ajustes) ===== */
 @media (max-width: 640px) {
   .test-card {
-    padding: 26px 18px;
-    border-radius: 20px;
+    padding: 24px 16px;
   }
 
   .test-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+  }
+
+  .btn-next,
+  .btn-submit {
+    max-width: 100%;
   }
 }
