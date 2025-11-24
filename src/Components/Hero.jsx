@@ -1,4 +1,5 @@
 // src/components/Hero.jsx
+import { Link } from "react-router-dom";
 import "./hero.css";
 
 function Hero() {
@@ -14,8 +15,8 @@ function Hero() {
             Te acompañamos con recursos, comunidad y apoyo profesional, estés donde estés.
           </p>
           <div className="hero-buttons">
-            <button className="btn-primary">Explora Recursos</button>
-            <button className="btn-secondary">Conócenos</button>
+            <Link  to = "/Informacion " className="btn-primary">Explora Recursos</Link>
+            <Link  to = "/Nosotras  " className="btn-secondary">Conócenos</Link>
           </div>
         </div>
       </section>

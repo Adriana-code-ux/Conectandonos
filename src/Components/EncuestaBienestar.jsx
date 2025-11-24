@@ -1,6 +1,6 @@
 // src/components/EncuestaBienestar.jsx
 import { useState } from "react";
-import "./EncuestaBienestar.css"; // 👈 importa los estilos
+import "./EncuestaBienestar.css";
 
 const preguntas = [
   {
@@ -85,7 +85,6 @@ function EncuestaBienestar() {
       return;
     }
 
-    // Calcular puntaje
     let score = 0;
     preguntas.forEach((p) => {
       score += respuestas[p.id] || 0;
@@ -112,23 +111,39 @@ function EncuestaBienestar() {
   return (
     <section className="test-section">
       <div className="test-card">
-        <h2 className="test-title">Test de Bienestar Emocional</h2>
-        <p className="test-subtitle">
-          Responde estas preguntas para tener una idea general de cómo te sientes
-          últimamente 💚
-        </p>
+        <header className="test-header">
+          <div>
+            <h2 className="test-title">Test de Bienestar Emocional</h2>
+            <p className="test-subtitle">
+              Responde estas preguntas para tener una visión general de tu
+              bienestar emocional en estos días.
+            </p>
+          </div>
+          <div className="test-pill">
+            <span>Conectándonos</span>
+          </div>
+        </header>
 
-        {/* Barra de progreso */}
-        <div className="progress-container">
-          <div
-            className="progress-bar"
-            style={{ width: `${finalizado ? 100 : progreso}%` }}
-          ></div>
+        <div className="progress-wrapper">
+          <div className="progress-info">
+            <span className="progress-label">Progreso</span>
+            {!finalizado && (
+              <span className="progress-step">
+                Pregunta {preguntaActual + 1} de {totalPreguntas}
+              </span>
+            )}
+          </div>
+          <div className="progress-container">
+            <div
+              className="progress-bar"
+              style={{ width: `${finalizado ? 100 : progreso}%` }}
+            ></div>
+          </div>
         </div>
 
         {!finalizado ? (
           <form className="test-form" onSubmit={manejarSubmit}>
-            <div className="question active">
+            <div className="question">
               <p className="question-text">{pregunta.texto}</p>
 
               <div className="options-group">
@@ -165,8 +180,12 @@ function EncuestaBienestar() {
           </form>
         ) : (
           <div className="result-box">
-            <h3>Tu resultado 🧠</h3>
-            <p>{resultado}</p>
+            <h3 className="result-title">Tu resultado 🧠</h3>
+            <p className="result-text">{resultado}</p>
+            <p className="result-footnote">
+              Este test no reemplaza una evaluación profesional, pero puede ser
+              un buen punto de partida para reflexionar sobre cómo te sientes.
+            </p>
           </div>
         )}
       </div>

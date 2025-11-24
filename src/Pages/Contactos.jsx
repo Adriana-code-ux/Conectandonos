@@ -1,208 +1,143 @@
-import './Contactos.css'
-
 const Contactos = () => {
   return (
-    <div id="contactos" className="contenedor-contacto container">
-      <div>
-        <h2 className="text-6xl font-bold text-gray-700 text-center py-6 bg-white"><b>Estamos para Ayudarte</b></h2>
-        <p className="bg-white/20 p-4 rounded-lg shadow-lg backdrop-blur-sm
-                    max-w-3xl mx-auto font-sans text-xl text-gray-800 text-center mt-5">Siempre encontrarás una respuesta amigable aquí</p>
-      </div>
+    <section id="contactos">
 
-      <div className="imagen-titulo" data-aos="flip-left">
+      {/* HERO SIN OPACIDAD EXCESIVA */}
+      <div className="relative w-full h-[85vh] overflow-hidden flex items-center justify-center">
+
         <img
-          src="https://psicologoencasa.cl/wp-content/uploads/2022/08/ayuda-emocional.jpg"
+          src="https://plus.unsplash.com/premium_photo-1664378616928-dc6842677183?q=80&w=870&auto=format&fit=crop"
           alt="Apoyo emocional"
-          className="img-fluid rounded shadow"
+          className="absolute inset-0 w-full h-full object-cover"
         />
+
+        {/* Overlay MUY suave */}
+        <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
-      <section className="min-h-screen flex items-center justify-center bg-white px-6 py-12">
-  <div className="max-w-4xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 p-12 rounded-3xl shadow-2xl text-center font-sans">
-    <h2 className="text-4xl font-bold text-gray-800 mb-6 font-serif">
-      En Conectándonos queremos que sepas que no estás sola 
-    </h2>
-    <p className="text-xl text-gray-700 leading-relaxed mb-4">
-      Este es tu espacio para compartir tus pensamientos, expresar lo que sientes y encontrar un respiro cuando la carga se vuelve pesada.
-    </p>
-    <p className="text-xl text-gray-700 leading-relaxed mb-8">
-      Aquí puedes desahogarte o simplemente buscar una mano amiga cuando lo necesites.
-    </p>
-    <p className="text-lg text-gray-600 italic">
-      Recuerda: dar el primer paso para hablar ya es un acto de valentía, y no tienes que hacerlo sola.  
-      Estamos aquí para acompañarte en este camino 🌈
-    </p>
-  </div>
-</section>
-
-
-      <div className="contenido-contacto">
-        <div className="contacto-campos" data-aos="fade-right">
-          <h3 className="formulario-titulo">💙Formulario de Contacto</h3>
-          <form id="contactForm">
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "16px",
-                marginBottom: "24px",
-                marginTop: "30px"
-              }}
-            >
-              <div className="campos">
-                <label htmlFor="nombreContacto">Nombre</label>
-                <input type="text" id="nombreContacto" placeholder="Tu nombre completo" />
-              </div>
-              <div className="campos">
-                <label htmlFor="telefono">Teléfono</label>
-                <input type="number" id="telefono" placeholder="Tu número de teléfono" />
-              </div>
-            </div>
-
-            <div className="campos">
-              <label htmlFor="emailContacto">Email</label>
-              <input type="email" id="emailContacto" placeholder="tu@email.com" required />
-            </div>
-
-            <div className="campos">
-              <label htmlFor="consulta">Tipo de Consulta</label>
-              <select id="consulta" required>
-                <option value="">Selecciona un tipo</option>
-                <option value="individual">Terapia Individual</option>
-                <option value="pareja">Terapia de Pareja</option>
-                <option value="familiar">Terapia Familiar</option>
-                <option value="online">Consulta Online</option>
-                <option value="otro">Otro</option>
-              </select>
-            </div>
-
-            <div className="campos">
-              <label htmlFor="mensaje">Mensaje</label>
-              <textarea
-                id="mensaje"
-                rows="4"
-                placeholder="Cuéntanos brevemente sobre tu situación o cualquier pregunta que tengas..."
-              ></textarea>
-            </div>
-
-            <button type="submit" className="btn btn-primary" style={{ width: "100%" }}>
-              📨 Enviar Solicitud
-            </button>
-
-            <p
-              style={{
-                fontSize: "15px",
-                color: "rgb(106, 106, 106)",
-                textAlign: "center",
-                marginTop: "20px"
-              }}
-            >
-              Tus datos están protegidos y se manejan con total confidencialidad.
-            </p>
-          </form>
-        </div>
-
-        <div className="contenido-info" aria-label="Sección con imagen de fondo sobre bienestar emocional" data-aos="fade-left">
-          <div className="info-item">
-            <div className="emojis-item">📍</div>
-            <div>
-              <h4 className="info-palabras">Ubicación</h4>
-              <p className="p-frases">Av. Centro de Lima, Perú</p>
-              <p style={{ color: "#373737" }}>
-                Estamos ubicados en una zona céntrica y de fácil acceso.
-              </p>
-            </div>
-          </div>
-
-          <div className="info-item">
-            <div className="emojis-item">📞</div>
-            <div>
-              <h4 className="info-palabras">Teléfono</h4>
-              <p className="p-frases">+51 914 324 244</p>
-              <p style={{ color: "#373737" }}>
-                Atendemos llamadas y mensajes de lunes a viernes, de 9:00 AM a 7:00 PM.
-              </p>
-            </div>
-          </div>
-
-          <div className="info-item">
-            <div className="emojis-item">📧</div>
-            <div>
-              <h4 className="info-palabras">Correo Electrónico</h4>
-              <p className="p-frases">conectandonos@mentebienestar.com</p>
-              <p style={{ color: "#373737" }}>
-                Te responderemos en un plazo máximo de 24 horas.
-              </p>
-            </div>s
-          </div>
-
-          <div className="info-item">
-            <div className="emojis-item">🕒</div>
-            <div>
-              <h4 className="info-palabras">Horarios de Atención</h4>
-              <p className="p-frases">Lunes a viernes de 9:00 AM a 7:00 PM</p>
-              <p style={{ color: "#373737" }}>Sábados: Atención con cita previa.</p>
-            </div>
-          </div>
+      {/* BLOQUE FLOTANTE DE TEXTO DEL HERO */}
+      <div className="relative z-20 -mt-16 max-w-3xl mx-auto px-6">
+        <div className="bg-white shadow-xl rounded-2xl p-8 border border-teal-100">
+          <h1 className="text-teal-700 text-3xl md:text-4xl font-bold mb-3">
+            Conectándonos Contigo 
+          </h1>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            Un espacio seguro, humano y lleno de empatía para acompañarte en tu bienestar emocional.
+          </p>
         </div>
       </div>
 
-      <div  data-aos="fade-up">
-        <h3 className='bg-white/20 p-4 rounded-lg shadow-lg backdrop-blur-sm
-                    max-w-3xl mx-auto font-sans text-xl text-gray-800 text-center mt-5'>
-          Aquí, cada paso hacia tu bienestar emocional es un logro y cada palabra compartida un puente hacia la esperanza.
+      {/* SECCIÓN EMOCIONAL – MÁS COLOR Y CONTRASTE */}
+      <div className="bg-teal-100/60 py-20 px-6 mt-16 border-t border-teal-200">
+        <div className="max-w-4xl mx-auto text-center">
+
+          <h2 className="text-3xl font-bold text-teal-800 mb-6">
+            No estás sola, estamos contigo
+          </h2>
+
+          <p className="text-gray-700 text-lg">
+            Aquí puedes compartir tus pensamientos, encontrar alivio y recibir apoyo real.
+          </p>
+
+          <p className="text-gray-700 text-lg mt-2">
+            Tu voz importa. Tu historia importa. Tu bienestar importa.
+          </p>
+
+          <p className="italic text-teal-700 font-medium mt-4">
+            Dar el primer paso ya es valentía 🌈
+          </p>
+
+        </div>
+      </div>
+
+      {/* INFO CARDS – MÁS COLOR PARA SEPARAR */}
+      <div className="bg-white py-20 px-6 border-t border-gray-200">
+        <h3 className="text-center text-3xl font-bold text-teal-700 mb-12">
+          Información de contacto
         </h3>
+
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+
+          <InfoCard icon="📍" title="Ubicación" text="Av. Centro de Lima, Perú" />
+          <InfoCard icon="📞" title="Teléfono" text="+51 914 324 244" />
+          <InfoCard icon="📧" title="Correo" text="atencion@conectandonos.com" />
+          <InfoCard icon="🕒" title="Horario" text="Lunes - Viernes: 9AM – 7PM" />
+
+        </div>
       </div>
 
-      <div className="opinion-campos">
-        <form id="formulario2">
-          <div style={{ gap: "16px", marginBottom: "24px", marginTop: "30px" }}>
-            <div className="campos">
-              <h3 className="formulario-titulo" id="titulo-suscripcion">
-                ¡SUSCRÍBETE!
-              </h3>
+      {/* FORMULARIO CON MÁS COLOR Y CONTRASTE */}
+      <div className="bg-gradient-to-br from-teal-200 to-teal-300 py-20 px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 bg-white shadow-2xl rounded-3xl p-12">
 
-              <label htmlFor="nombreSuscripcion">Nombre:</label>
-              <input
-                type="text"
-                id="nombreSuscripcion"
-                name="nombre"
-                placeholder="Tu nombre"
-                required
-              />
-            </div>
+          {/* TEXTO LATERAL */}
+          <div className="flex flex-col justify-center">
+            <h3 className="text-teal-800 text-4xl font-bold mb-4">
+              💬 Escríbenos un mensaje
+            </h3>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Estamos aquí para escucharte. Todo lo que compartas es confidencial y tratado con
+              respeto y empatía.
+            </p>
+          </div>
 
-            <div className="campos">
-              <label htmlFor="emailSuscripcion">Correo electrónico:</label>
-              <input
-                type="email"
-                id="emailSuscripcion"
-                name="email"
-                placeholder="ejemplo@correo.com"
-                required
-              />
-            </div>
+          {/* FORMULARIO */}
+          <form className="space-y-6">
 
-            <h3 className="formulario-titulo" id="titulo-opinion">"Tu voz importa,❤️."</h3>
+            <Input label="Nombre" type="text" placeholder="Tu nombre completo" />
+            <Input label="Correo" type="email" placeholder="ejemplo@correo.com" />
 
-            <div className="campos">
-              <label htmlFor="opinion">Tu opinión:</label>
+            <div>
+              <label className="block mb-2 text-gray-800 font-medium">Mensaje</label>
               <textarea
-                id="opinion"
-                name="opinion"
-                placeholder="Escribe tu comentario aquí..."
-                required
+                rows="5"
+                className="w-full border rounded-xl p-4 outline-none bg-gray-50 focus:ring-2 focus:ring-teal-400"
+                placeholder="Cuéntanos cómo te sientes..."
               ></textarea>
             </div>
 
-            <button type="submit" className="btn btn-primary" style={{ width: "100%" }}>
-              SUSCRÍBETE
+            <button
+              type="submit"
+              className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 rounded-xl transition"
+            >
+              📨 Enviar mensaje
             </button>
-          </div>
-        </form>
+
+          </form>
+
+        </div>
       </div>
-    </div>
+
+      {/* FRASE FINAL */}
+      <p className="text-center mt-12 mb-16 text-teal-700 italic px-4">
+        Cada palabra es un paso hacia tu bienestar. Aquí estamos contigo 💛
+      </p>
+
+    </section>
   );
 };
 
 export default Contactos;
+
+/* SUBCOMPONENTES */
+const InfoCard = ({ icon, title, text }) => (
+  <div className="bg-teal-50 rounded-2xl shadow-md p-6 flex items-start gap-4 border border-teal-200">
+    <span className="text-4xl">{icon}</span>
+    <div>
+      <h3 className="font-semibold text-teal-800 text-xl">{title}</h3>
+      <p className="text-gray-600 mt-1">{text}</p>
+    </div>
+  </div>
+);
+
+const Input = ({ label, type, placeholder }) => (
+  <div>
+    <label className="block mb-2 text-gray-800 font-medium">{label}</label>
+    <input
+      type={type}
+      className="w-full border rounded-xl p-3 bg-gray-50 outline-none focus:ring-2 focus:ring-teal-400"
+      placeholder={placeholder}
+    />
+  </div>
+);
+

@@ -1,174 +1,260 @@
-/* Importar fuentes si no están en tu HTML. Ejemplo: Open Sans */
-/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap'); */
+/* src/components/EncuestaBienestar.css */
 
-/* Definir la paleta de colores para dinamismo */
+/* Paleta sobria y limpia */
 :root {
-  --primary-color: #4BC0C8; /* Turquesa dinámico */
-  --light-bg-color: #f7feff; /* Fondo muy claro con toque azul */
-  --text-dark: #1e293b;
+  --primary-color: #22b8b2;
+  --primary-soft: #e6f7f7;
+  --page-section-bg: #f7f4eb;
+  --text-dark: #0f172a;
   --text-medium: #64748b;
-  --border-light: #e2e8f0;
+  --border-soft: #e2e8f0;
 }
 
-/* ===== Contenedor General y Tarjeta (Dinámico y Limpio) ===== */
+/* Sección de fondo */
 .test-section {
   min-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 16px;
-  background: var(--light-bg-color); /* Fondo muy claro con toque de color */
+  padding: 48px 16px;
+  background: var(--page-section-bg);
 }
 
-/* Tarjeta del test - Pura, pero con un borde y sombra suaves */
+/* Tarjeta principal */
 .test-card {
   background: #ffffff;
-  max-width: 600px;
+  max-width: 640px;
   width: 100%;
-  padding: 40px 32px;
-  border-radius: 12px; /* Más redondeado para amabilidad */
-  /* Reintroducimos una sombra suave y profesional */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--border-light);
+  padding: 32px 28px;
+  border-radius: 20px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-sizing: border-box;
 }
 
-/* Títulos - Fuente clara y amigable */
+/* Header de la tarjeta */
+.test-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
 .test-title {
-  text-align: center; 
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  color: var(--primary-color); /* Color principal dinámico */
-  margin-bottom: 5px;
-  font-family: 'Open Sans', sans-serif;
+  color: var(--text-dark);
+  margin: 0 0 6px 0;
 }
 
 .test-subtitle {
-  text-align: center;
   font-size: 0.95rem;
   color: var(--text-medium);
-  margin-bottom: 30px;
+  margin: 0;
+  max-width: 420px;
 }
 
-/* ===== Barra de progreso (Color dinámico) ===== */
+/* Pill de marca / sección */
+.test-pill {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+/* Progreso */
+.progress-wrapper {
+  margin-bottom: 28px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-medium);
+}
+
+.progress-step {
+  font-size: 0.83rem;
+  color: var(--text-medium);
+}
+
 .progress-container {
-  background-color: #e5f6ff; /* Fondo muy claro de la barra */
+  background-color: #e2f3f3;
   border-radius: 999px;
   overflow: hidden;
-  height: 8px; /* Un poco más gruesa para visibilidad */
-  margin-bottom: 30px;
+  height: 6px;
 }
 
 .progress-bar {
   height: 100%;
   width: 0;
-  background: var(--primary-color); /* Usamos el color de acento dinámico */
+  background: linear-gradient(90deg, var(--primary-color), #0ea5e9);
   transition: width 0.3s ease;
 }
 
-/* ===== Pregunta y opciones (Interactividad) ===== */
+/* Pregunta */
 .question-text {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-dark);
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
+/* Grupo de opciones */
 .options-group {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 26px;
 }
 
-/* Estilo de la opción individual (Interactiva) */
+/* Opción individual */
 .option-item {
-  /* Mantener el mismo estilo de lista limpia */
-  padding: 14px 20px;
-  border-radius: 8px; 
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
   background-color: #ffffff;
-  border: 2px solid var(--border-light); /* Borde más visible */
+  border: 1px solid var(--border-soft);
   cursor: pointer;
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease;
-  font-size: 1rem;
+  transition: background-color 0.18s ease, border-color 0.18s ease,
+    box-shadow 0.18s ease, transform 0.12s ease;
+  font-size: 0.98rem;
   color: var(--text-dark);
 }
 
-/* Efecto hover: Resalta con color de acento */
+/* Hover */
 .option-item:hover {
-  border-color: var(--primary-color); /* Borde dinámico en hover */
-  background-color: #f0fcff; /* Fondo muy suave en hover */
+  border-color: rgba(34, 184, 178, 0.4);
+  background-color: #f9fafa;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.04);
+  transform: translateY(-1px);
 }
 
-/* Estilo para cuando la opción está seleccionada (Checked) */
-.option-item input[type="radio"]:checked + span {
-    color: var(--text-dark);
-    font-weight: 700;
-}
-
+/* Radio custom */
 .option-item input[type="radio"] {
-  accent-color: var(--primary-color); /* El check usa el color dinámico */
+  appearance: none;
   width: 18px;
   height: 18px;
+  border-radius: 999px;
+  border: 2px solid #cbd5e1;
+  position: relative;
+  flex-shrink: 0;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+  background-color: #ffffff;
 }
 
-/* ===== Botones (Con Sombra y Color Dinámico) ===== */
+.option-item input[type="radio"]:checked {
+  border-color: var(--primary-color);
+  background-color: var(--primary-soft);
+}
+
+.option-item input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 999px;
+  background-color: var(--primary-color);
+}
+
+/* Texto opción cuando está seleccionada */
+.option-item input[type="radio"]:checked + span {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* Botones */
 .btn-next,
 .btn-submit {
-  display: block;
-  width: 100%;
-  max-width: 250px;
-  margin-left: auto;
-  margin-right: auto; 
-  padding: 12px 26px;
-  border-radius: 50px; /* Completamente redondeado para dinamismo */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 180px;
+  padding: 11px 24px;
+  border-radius: 999px;
   border: none;
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.98rem;
   cursor: pointer;
-  background: var(--primary-color); /* Color de acento dinámico */ 
+  background: var(--primary-color);
   color: #ffffff;
-  /* Sombra para darle profundidad y hacerlo dinámico */
-  box-shadow: 0 8px 15px rgba(75, 192, 200, 0.4); 
-  transition: all 0.2s ease;
+  box-shadow: 0 12px 25px rgba(34, 184, 178, 0.35);
+  transition: background 0.18s ease, transform 0.12s ease,
+    box-shadow 0.18s ease;
+  margin-left: auto;
+  display: flex;
 }
 
 .btn-next:hover,
 .btn-submit:hover {
-  /* Efecto de "lift" para interactividad */
-  transform: translateY(-2px); 
-  background: #38a1ac; 
-  box-shadow: 0 10px 20px rgba(75, 192, 200, 0.6);
+  background: #17918c;
+  transform: translateY(-1px);
+  box-shadow: 0 18px 35px rgba(34, 184, 178, 0.4);
 }
 
-/* ===== Resultado (Caja de mensaje positiva y clara) ===== */
+/* Resultado */
 .result-box {
-  margin-top: 25px;
-  background: #f0fcff; /* Fondo muy pálido de acento */
-  border-radius: 8px;
-  padding: 25px 22px;
-  text-align: center;
-  color: var(--text-dark);
-  border: 1px solid var(--primary-color);
+  margin-top: 10px;
+  background: #f8feff;
+  border-radius: 16px;
+  padding: 22px 20px;
+  border: 1px solid #bae6fd;
 }
 
-.result-box h3 {
+.result-title {
+  margin: 0 0 8px 0;
   font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+  color: var(--text-dark);
 }
 
-/* ===== Responsive (Mantenemos los ajustes) ===== */
+.result-text {
+  margin: 0 0 10px 0;
+  color: var(--text-medium);
+  font-size: 0.95rem;
+}
+
+.result-footnote {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+/* Responsive */
 @media (max-width: 640px) {
   .test-card {
-    padding: 24px 16px;
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .test-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .test-pill {
+    margin-top: 10px;
   }
 
   .test-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 
   .btn-next,
   .btn-submit {
-    max-width: 100%;
+    width: 100%;
+    margin-top: 4px;
   }
 }
