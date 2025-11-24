@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import './navbar.css';
+import './Navbar.css';
 import { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import app from '../firebase';

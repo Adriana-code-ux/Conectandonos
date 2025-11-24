@@ -77,42 +77,41 @@ function Informacion() {
   return (
     <div className="bg-stone-50 text-gray-800 font-sans">
       {/* 1. HERO SECTION: Fondo con imagen SVG local */}
-      <section
-        className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden"
-        style={{
-          // **Ruta local a la carpeta 'public'**
-          backgroundImage:
-            "url('/prevencion-salud-mental.svg')", 
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        {/* Capa superpuesta con opacidad para visibilidad del texto */}
-        <div className="absolute inset-0 bg-teal-0 bg-opacity-40"></div>
+     <section
+  className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden"
+  style={{
+    backgroundImage: "url('/prevencion-salud-mental.svg')", // desde public
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
+  {/* Capa superpuesta más oscura para que se lea mejor el texto */}
+  <div className="absolute inset-0 bg-slate-900/70"></div>
 
-        {/* Contenido (Texto) */}
-        <div className="relative max-w-6xl w-full p-6 m-6">
-          <div className="grid grid-cols-1 items-center">
-            {/* Texto */}
-            <div className="text-center md:text-left md:pl-8">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-white drop-shadow-lg leading-tight">
-                Trastornos Mentales
-              </h1>
-              <p className="text-lg md:text-xl text-white font-light mt-4 max-w-xl md:max-w-none mx-auto md:mx-0">
-                Cuidando tu mente, <b>cuidando tu vida</b>
-              </p>
+  {/* Contenido (Texto) */}
+  <div className="relative max-w-6xl w-full px-6 py-10 md:py-14 m-6">
+    <div className="grid grid-cols-1 items-center">
+      <div className="text-center md:text-left md:pl-8">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-white leading-tight drop-shadow-[0_6px_18px_rgba(0,0,0,0.9)]">
+          Trastornos Mentales
+        </h1>
 
-              <a
-                href="#importancia"
-                className="mt-8 inline-block bg-white text-teal-800 px-6 md:px-8 py-3 rounded-full font-semibold shadow-xl hover:bg-gray-100 transition duration-300 transform hover:scale-105"
-              >
-                Saber más
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+        <p className="text-lg md:text-2xl text-white font-medium mt-4 max-w-xl md:max-w-2xl mx-auto md:mx-0 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+          Cuidando tu mente, <b>cuidando tu vida</b>
+        </p>
+
+        <a
+          href="#importancia"
+          className="mt-8 inline-block bg-white/95 text-teal-800 px-6 md:px-8 py-3 rounded-full font-semibold shadow-xl hover:bg-white transition duration-300 transform hover:scale-105"
+        >
+          Saber más
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* 2. IMPORTANCIA */}
       <section id="importancia" className="max-w-7xl mx-auto py-20 px-6">
