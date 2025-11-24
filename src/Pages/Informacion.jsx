@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useState } from "react";
 
 function Informacion() {
   // Define los datos de los trastornos.
@@ -232,3 +233,4 @@ function Informacion() {
 }
 
 export default Informacion;
+

@@ -1,172 +1,194 @@
-.titulo1 {
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 16px;
-  padding: 20px;
-  font-size: 70px;
-  background-color: #ffffff;
-  color: #374151;
-}
-.contenedor-contacto {
-  max-width: 1200px;
+/* ------------------------------- */
+/* CONTENEDOR PRINCIPAL */
+/* ------------------------------- */
+
+.contact-container {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 20px;
-  width: 100%;
-}
-
-.titulo-contacto {
-  font-size: 70px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding: 40px 20px;
   color: #374151;
-  text-align: center;
-  /*background-color: #e6fff9;*/
+  font-family: "Inter", sans-serif;
 }
 
-.textoinicial {
-  margin: 40px;
-  text-align: center;
-  background-color: #e6fff9;
-}
+/* ------------------------------- */
+/* HERO IMAGE */
+/* ------------------------------- */
 
-.formulario-titulo {
-  font-size: 25px;
-  margin-top: 5px;
-  color: #374151;
-}
-
-.frasefinal {
-  margin: 30px 0;
-  text-align: center;
-  color: #5fe2e2;
-  font-size: 25px;
-  background: #f0fdfa;
-  border-radius: 15px;
-  border: #b3dbdb ridge;
-  padding: 5px;
-}
-
-.info-palabras {
-  margin-bottom: 10px;
-  color: rgb(32, 29, 29);
-  text-align: start;
-  font-size: 20px;
-  margin-top: 20px;
-}
-
-.p-frases {
-  margin-bottom: 10px;
-  color: rgb(38, 36, 36);
-  text-align: start;
-  font-size: 18px;
-}
-
-.imagen-titulo {
-  width: 100%;
-  margin: 20px 0;
-  text-align: center;
-}
-
-.imagen-titulo img {
+.hero-image img {
   width: 100%;
   height: auto;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  margin-bottom: 40px;
+}
+
+/* ------------------------------- */
+/* MENSAJES EMOCIONALES */
+/* ------------------------------- */
+
+.message-section {
+  text-align: center;
+  background: #f9fffd;
+  padding: 32px 24px;
+  margin: 40px 0;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  line-height: 1.65;
+}
+
+.message-section h2 {
+  margin-bottom: 16px;
+  font-size: 28px;
+  color: #2f3e46;
+}
+
+.message-section .italic {
+  font-style: italic;
+  color: #4a4a4a;
+}
+
+/* ------------------------------- */
+/* LAYOUT DOS COLUMNAS */
+/* ------------------------------- */
+
+.two-columns {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .two-columns {
+    flex-direction: column;
+  }
+}
+
+/* ------------------------------- */
+/* FORMULARIO */
+/* ------------------------------- */
+
+.contact-form h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
   display: block;
-  object-fit: cover;
+  margin-bottom: 6px;
+  font-weight: 600;
 }
 
-.contacto-campos {
-  background: #e6fff9;
-  padding: 32px;
-  border-radius: 16px;
-}
-
-.campos {
-  margin-bottom: 18px;
-}
-
-.campos label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #374151;
-}
-
-.campos input,
-.campos textarea,
-.campos select {
+.field input,
+.field select,
+.field textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #dce7e7;
   border-radius: 8px;
   font-size: 16px;
-  line-height: 1.5;
-  transition: border-color 0.3s;
+  background: white;
+  transition: border 0.3s, box-shadow 0.3s;
 }
 
-.campos input:focus,
-.campos textarea:focus,
-.campos select:focus {
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
   outline: none;
-  border-color: #b3dbdb;
+  border-color: #8edcdc;
+  box-shadow: 0 0 0 3px rgba(142, 220, 220, 0.35);
 }
 
-.btn-primary {
-  background-color: #b3dbdb;
+.two-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .two-inputs {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ------------------------------- */
+/* BOTÓN */
+/* ------------------------------- */
+
+.btn-macchiato {
+  padding: 12px 22px;
+  background: #b3dbdb;
+  color: #2f3e46;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
   border: none;
+  transition: background 0.3s ease;
 }
 
-.btn-primary:hover {
-  background-color: #b3dbdb;
+.btn-macchiato:hover {
+  background: #8edcdc;
 }
 
-.contenido-info {
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url("https://img.freepik.com/vector-premium/corazon-divertido-meditacion-cerebral-sonriente-equilibrio-mente-concepto-sentimientos-vector-plano-illustra_449806-518.jpg");
-  background-size: contain;
-  background-position: center;
-  padding: 20px;
-  border-radius: 16px;
-  background-color: rgba(0, 0, 0, 0.1); /* negro semitransparente encima */
-  background-blend-mode: overlay; /* mezcla color + imagen */
+.privacy-text {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b6b6b;
 }
 
-.contenido-info > * + * {
-  margin-top: 32px;
+/* ------------------------------- */
+/* PANEL DE INFORMACIÓN */
+/* ------------------------------- */
+
+.info-panel {
+  flex: 1;
+  background: #f4fffd;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
 }
 
 .info-item {
   display: flex;
-  align-items: start;
-  gap: 16px;
-  margin-bottom: 32px;
-  margin-top: 16px;
-}
-
-.emojis-item {
-  width: 50px;
-  height: 50px;
-  background: #87dfdf;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.contenido-contacto {
-  display: flex;
-  gap: 32px;
-  justify-content: center;
   align-items: flex-start;
-  margin-top: 25px;
+  gap: 16px;
+  margin-bottom: 26px;
 }
 
-@media (max-width: 768px) {
-  .contenido-contacto {
-    flex-direction: column;
-    gap: 20px;
-  }
+.icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #8edcdc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+
+.info-item .highlight {
+  font-weight: 600;
+}
+
+/* ------------------------------- */
+/* SUSCRIPCIÓN */
+/* ------------------------------- */
+
+.subscription {
+  margin-top: 40px;
+  background: #ffffff;
+  padding: 32px 24px;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+.subscription h3 {
+  font-size: 24px;
+  margin-bottom: 18px;
 }
