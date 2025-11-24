@@ -1,6 +1,6 @@
 // src/components/Hero.jsx
 import { Link } from "react-router-dom";
-import "./hero.css";
+import "./Hero.css";
 
 function Hero() {
   return (

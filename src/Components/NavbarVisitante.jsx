@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./navbar.css";
+import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 
 function NavbarVisitante() {
