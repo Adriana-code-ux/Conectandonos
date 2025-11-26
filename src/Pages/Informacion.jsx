@@ -99,7 +99,7 @@ function Informacion() {
 
         <p className="text-lg md:text-2xl text-white font-medium mt-4 max-w-xl md:max-w-2xl mx-auto md:mx-0 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
           Cuidando tu mente, <b>cuidando tu vida</b>
-        </p>
+        </p> 
 
         <a
           href="#importancia"
