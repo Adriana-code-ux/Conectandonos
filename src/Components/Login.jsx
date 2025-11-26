@@ -17,7 +17,7 @@ function Login() {
   const iniciarSesion = async () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => navigate("/"))
+      .then(() => navigate("/Comunidad"))
       .catch(() => alert("Correo o contraseña incorrectos."));
   };
 
