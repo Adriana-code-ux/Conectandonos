@@ -365,6 +365,126 @@
   margin: 0 auto; /* centra el texto en ese ancho */
 }
 
+/* ==== COMENTARIOS ORDENADOS ==== */
+
+.post-comentarios {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.comentarios-titulo {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.comentarios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+  max-height: 120px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.comentario-card {
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 6px 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.comentario-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.comentario-autor {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.comentario-fecha {
+  font-size: 0.7rem;
+  color: #9ca3af;
+}
+
+.comentario-texto {
+  font-size: 0.8rem;
+  color: #374151;
+  margin-top: 2px;
+}
+
+.comentario-acciones {
+  margin-top: 4px;
+  display: flex;
+  gap: 6px;
+}
+
+.comentario-btn {
+  border-radius: 999px;
+  border: none;
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.comentario-btn.editar {
+  background: #0f766e;
+  color: #fff;
+}
+
+.comentario-btn.eliminar {
+  background: #f97373;
+  color: #fff;
+}
+
+/* input de comentario separado y limpio */
+.comentario-input-wrapper {
+  margin-top: 6px;
+}
+
+.textarea-comentario {
+  width: 100%;
+  min-height: 60px;
+  resize: vertical;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 8px 10px;
+  font-size: 0.8rem;
+  outline: none;
+  background: #ffffff;
+}
+
+.textarea-comentario:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.2);
+}
+
+.comentario-input-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.btn-comentar {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #0f766e;
+  color: #fff;
+  cursor: pointer;
+}
+
+
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 960px) {

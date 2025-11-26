@@ -1,19 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import "./Register.css"; // 🔗 Vinculación del CSS
+import "./Register.css";
 
-function RegistrarUsuario({ onRegister, cambiarVista }) {
+function RegistrarUsuario({ onRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  // Función para registrar usuario
   const registrar = async () => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("Cuenta creada con éxito");
-        onRegister(user);
+        if (onRegister) onRegister(user);
+        navigate("/iniciar-sesion");
       })
       .catch((error) => {
         console.log("Error al registrar el usuario:", error.message);
@@ -74,12 +76,12 @@ function RegistrarUsuario({ onRegister, cambiarVista }) {
           <button
             type="button"
             className="registro-btn-secundario"
-            onClick={cambiarVista}
+            onClick={() => navigate("/iniciar-sesion")}
           >
             Iniciar sesión
           </button>
 
-          <p className="toggle-view" onClick={cambiarVista}>
+          <p className="toggle-view" onClick={() => navigate("/iniciar-sesion")}>
             ¿Ya tienes cuenta? <span>Inicia sesión aquí</span>
           </p>
         </div>

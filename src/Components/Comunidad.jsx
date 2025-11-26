@@ -322,7 +322,7 @@ function Comunidad() {
                         <img
                           src={post.autorFoto || "/Fotod.jpg"}
                           alt="Autor"
-                          className="post-avatar" // ⬅ avatar redondo
+                          className="post-avatar"
                         />
                         <div>
                           <p className="post-autor-nombre">{post.autor}</p>
@@ -399,65 +399,73 @@ function Comunidad() {
                           Comentarios ({comentarios.length})
                         </h4>
 
-                        {comentarios.map((c) => (
-                          <div key={c.id} className="comentario-card">
-                            <div className="comentario-header">
-                              <img
-                                src={c.autorFoto || "/Fotod.jpg"}
-                                alt="avatar comentario"
-                                className="comentario-avatar" // también redondo
-                              />
-                              <div>
-                                <p className="comentario-autor">{c.autor}</p>
-                                <p className="comentario-fecha">
-                                  {formatearFecha(c.fecha)}
-                                </p>
+                        <div className="comentarios-lista">
+                          {comentarios.map((c) => (
+                            <div key={c.id} className="comentario-card">
+                              <div className="comentario-header">
+                                <img
+                                  src={c.autorFoto || "/Fotod.jpg"}
+                                  alt="avatar comentario"
+                                  className="comentario-avatar"
+                                />
+                                <div>
+                                  <p className="comentario-autor">
+                                    {c.autor}
+                                  </p>
+                                  <p className="comentario-fecha">
+                                    {formatearFecha(c.fecha)}
+                                  </p>
+                                </div>
                               </div>
+
+                              <p className="comentario-texto">{c.texto}</p>
+
+                              {c.autorUid === uid && (
+                                <div className="comentario-acciones">
+                                  <button
+                                    className="comentario-btn editar"
+                                    onClick={() =>
+                                      editarComentario(post.id, c)
+                                    }
+                                  >
+                                    Editar
+                                  </button>
+                                  <button
+                                    className="comentario-btn eliminar"
+                                    onClick={() =>
+                                      eliminarComentario(post.id, c)
+                                    }
+                                  >
+                                    Eliminar
+                                  </button>
+                                </div>
+                              )}
                             </div>
-
-                            <p className="comentario-texto">{c.texto}</p>
-
-                            {c.autorUid === uid && (
-                              <div className="comentario-acciones">
-                                <button
-                                  className="comentario-btn editar"
-                                  onClick={() =>
-                                    editarComentario(post.id, c)
-                                  }
-                                >
-                                  Editar
-                                </button>
-                                <button
-                                  className="comentario-btn eliminar"
-                                  onClick={() =>
-                                    eliminarComentario(post.id, c)
-                                  }
-                                >
-                                  Eliminar
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                        ))}
+                          ))}
+                        </div>
 
                         {/* Input de comentario */}
-                        <textarea
-                          placeholder="Escribe un comentario..."
-                          className="textarea-comentario"
-                          value={inputComentarioPorPost[post.id] || ""}
-                          onChange={(e) =>
-                            setInputComentarioPorPost((prev) => ({
-                              ...prev,
-                              [post.id]: e.target.value,
-                            }))
-                          }
-                        />
-                        <button
-                          className="btn-comentar"
-                          onClick={() => agregarComentario(post.id)}
-                        >
-                          Comentar
-                        </button>
+                        <div className="comentario-input-wrapper">
+                          <textarea
+                            placeholder="Escribe un comentario..."
+                            className="textarea-comentario"
+                            value={inputComentarioPorPost[post.id] || ""}
+                            onChange={(e) =>
+                              setInputComentarioPorPost((prev) => ({
+                                ...prev,
+                                [post.id]: e.target.value,
+                              }))
+                            }
+                          />
+                          <div className="comentario-input-footer">
+                            <button
+                              className="btn-comentar"
+                              onClick={() => agregarComentario(post.id)}
+                            >
+                              Comentar
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   );

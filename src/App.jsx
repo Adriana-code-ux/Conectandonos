@@ -17,31 +17,35 @@ import Comunidad from "./Components/Comunidad";
 import Rutaprivada from "./Components/Rutaprivada";
 import EncuestaBienestar from "./Components/EncuestaBienestar";
 import EncuestaEquipo from "./Components/EncuestaEquipo";
+
 function App() {
   return (
     <>
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={
-            
-            <>
-            <Hero />
-          <EncuestaBienestar/>  
-          
-            </>
-            
-          } z />
-          <Route path="/Informacion" element={<Informacion />} z />
-          <Route path="/Nosotras" element={
-            <> 
-            <Nosotras />
-            <EncuestaEquipo />
-            </>
-           
-            } z />
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <EncuestaBienestar />
+              </>
+            }
+          />
+          <Route path="/Informacion" element={<Informacion />} />
+          <Route
+            path="/Nosotras"
+            element={
+              <>
+                <Nosotras />
+                <EncuestaEquipo />
+              </>
+            }
+          />
+          <Route path="/Contacto" element={<Contactos />} />
 
-          <Route path="/Contacto" element={<Contactos />} z />
+          {/* Página combinada (si la sigues usando) */}
           <Route
             path="/Prueba"
             element={
@@ -50,20 +54,19 @@ function App() {
                 <RegistrarUsuario />
               </>
             }
-            z
           />
-          <Route path="/iniciar-sesion" element={<Login />} z />
-          <Route path="/registrar-usuario" element={<RegistrarUsuario />} z />
+
+          {/* Rutas individuales */}
+          <Route path="/iniciar-sesion" element={<Login />} />
+          <Route path="/registrar-usuario" element={<RegistrarUsuario />} />
+
           <Route
             path="/Comunidad"
             element={
-              <>
-                <Rutaprivada>
-                  <Comunidad />
-                </Rutaprivada>
-              </>
+              <Rutaprivada>
+                <Comunidad />
+              </Rutaprivada>
             }
-            z
           />
         </Routes>
         <Footer />
