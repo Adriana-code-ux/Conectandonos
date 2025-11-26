@@ -24,7 +24,7 @@ function Login() {
   const iniciarSesionGoogle = () => {
     const auth = getAuth();
     signInWithPopup(auth, provider)
-      .then(() => navigate("/"))
+      .then(() => navigate("/Comunidad"))
       .catch(() => alert("Error al iniciar sesión con Google."));
   };
 
