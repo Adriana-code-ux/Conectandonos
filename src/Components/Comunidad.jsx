@@ -12,38 +12,37 @@ import {
   deleteDoc,
   serverTimestamp,
 } from "firebase/firestore";
-import "./Comunidad.css";
 
-function Comunidad() {
+/* ===================== COMPONENT ===================== */
+
+export default function Comunidad() {
   const auth = getAuth();
 
-  // Datos de usuario
   const [uid, setUid] = useState(null);
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [foto, setFoto] = useState("/Fotod.jpg");
-  const [cargando, setCargando] = useState(true);
 
-  // Editar perfil
   const [nuevoNombre, setNuevoNombre] = useState("");
   const [nuevaFoto, setNuevaFoto] = useState("");
 
-  // Posts
-  const [contenidoPost, setContenidoPost] = useState("");
   const [posts, setPosts] = useState([]);
+  const [contenidoPost, setContenidoPost] = useState("");
 
-  // Edición de posts
-  const [editandoID, setEditandoID] = useState(null);
-  const [nuevoContenido, setNuevoContenido] = useState("");
-
-  // Comentarios por post
   const [comentariosPorPost, setComentariosPorPost] = useState({});
-  const [inputComentarioPorPost, setInputComentarioPorPost] = useState({});
-  const comentariosUnsubsRef = useRef({});
+  const [inputComentario, setInputComentario] = useState({});
 
-  // Escuchar usuario logueado
+  const [editandoPost, setEditandoPost] = useState(null);
+  const [editandoComentario, setEditandoComentario] = useState(null);
+  const [textoEdicion, setTextoEdicion] = useState("");
+
+  const [loading, setLoading] = useState(true);
+  const comentariosUnsubs = useRef({});
+
+  /* ===================== AUTH ===================== */
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    return onAuthStateChanged(auth, (user) => {
       if (user) {
         setUid(user.uid);
         setNombre(user.displayName || "Usuario");
@@ -51,455 +50,365 @@ function Comunidad() {
         setFoto(user.photoURL || "/Fotod.jpg");
         setNuevoNombre(user.displayName || "");
         setNuevaFoto(user.photoURL || "");
-      } else {
-        setUid(null);
-        setNombre("");
-        setEmail("");
-        setFoto("/Fotod.jpg");
       }
-      setCargando(false);
+      setLoading(false);
     });
-
-    return () => unsubscribe();
   }, [auth]);
 
-  // Escuchar publicaciones en tiempo real
+  /* ===================== POSTS ===================== */
+
   useEffect(() => {
     const q = query(collection(db, "posts"), orderBy("fecha", "desc"));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const lista = snapshot.docs.map((docSnap) => ({
-        id: docSnap.id,
-        ...docSnap.data(),
-      }));
-      setPosts(lista);
+    return onSnapshot(q, (snap) => {
+      setPosts(snap.docs.map(d => ({ id: d.id, ...d.data() })));
     });
-
-    return () => unsubscribe();
   }, []);
 
-  // Escuchar comentarios de cada post
+  /* ===================== COMENTARIOS ===================== */
+
   useEffect(() => {
-    posts.forEach((p) => {
-      if (comentariosUnsubsRef.current[p.id]) return;
+    posts.forEach((post) => {
+      if (comentariosUnsubs.current[post.id]) return;
 
       const q = query(
-        collection(db, "posts", p.id, "comentarios"),
+        collection(db, "posts", post.id, "comentarios"),
         orderBy("fecha", "asc")
       );
 
-      const unsub = onSnapshot(q, (snap) => {
-        const lista = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-        setComentariosPorPost((prev) => ({ ...prev, [p.id]: lista }));
+      comentariosUnsubs.current[post.id] = onSnapshot(q, (snap) => {
+        setComentariosPorPost(prev => ({
+          ...prev,
+          [post.id]: snap.docs.map(d => ({ id: d.id, ...d.data() })),
+        }));
       });
-
-      comentariosUnsubsRef.current[p.id] = unsub;
     });
 
-    return () => {
-      Object.values(comentariosUnsubsRef.current).forEach((unsub) => unsub());
-    };
+    return () =>
+      Object.values(comentariosUnsubs.current).forEach(unsub => unsub());
   }, [posts]);
 
+  /* ===================== ACCIONES ===================== */
+
   const actualizarPerfil = async () => {
-    if (!auth.currentUser) return;
-
-    try {
-      await updateProfile(auth.currentUser, {
-        displayName: nuevoNombre || nombre,
-        photoURL: nuevaFoto || foto,
-      });
-
-      setNombre(nuevoNombre || nombre);
-      setFoto(nuevaFoto || foto);
-      alert("Perfil actualizado correctamente ✅");
-    } catch (error) {
-      console.error("Error al actualizar perfil:", error);
-      alert("Ocurrió un error al actualizar el perfil");
-    }
+    await updateProfile(auth.currentUser, {
+      displayName: nuevoNombre,
+      photoURL: nuevaFoto,
+    });
+    setNombre(nuevoNombre);
+    setFoto(nuevaFoto);
   };
 
   const crearPost = async () => {
     if (!contenidoPost.trim()) return;
-
-    try {
-      await addDoc(collection(db, "posts"), {
-        contenido: contenidoPost,
-        fecha: serverTimestamp(),
-        autor: nombre || "Anónimo",
-        autorUid: uid,
-        autorFoto: foto,
-        likes: [],
-      });
-      setContenidoPost("");
-    } catch (error) {
-      console.error("Error al crear post:", error);
-      alert("Ocurrió un error al crear la publicación");
-    }
+    await addDoc(collection(db, "posts"), {
+      contenido: contenidoPost,
+      autor: nombre,
+      autorUid: uid,
+      autorFoto: foto,
+      fecha: serverTimestamp(),
+      likes: [],
+    });
+    setContenidoPost("");
   };
 
   const toggleLike = async (post) => {
-    const ref = doc(db, "posts", post.id);
-    const actuales = post.likes || [];
-    const nuevos = actuales.includes(uid)
-      ? actuales.filter((id) => id !== uid)
-      : [...actuales, uid];
+    const nuevosLikes = post.likes.includes(uid)
+      ? post.likes.filter(id => id !== uid)
+      : [...post.likes, uid];
 
-    await updateDoc(ref, { likes: nuevos });
-  };
-
-  const guardarEdicion = async (id) => {
-    if (!nuevoContenido.trim()) return;
-
-    try {
-      const ref = doc(db, "posts", id);
-      await updateDoc(ref, { contenido: nuevoContenido });
-      setEditandoID(null);
-      setNuevoContenido("");
-    } catch (error) {
-      console.error("Error al editar post:", error);
-      alert("Ocurrió un error al guardar los cambios");
-    }
-  };
-
-  const eliminarPost = async (id) => {
-    const confirmar = window.confirm(
-      "¿Seguro que quieres eliminar esta publicación?"
+    // Optimista
+    setPosts(prev =>
+      prev.map(p => p.id === post.id ? { ...p, likes: nuevosLikes } : p)
     );
-    if (!confirmar) return;
 
-    try {
-      const ref = doc(db, "posts", id);
-      await deleteDoc(ref);
-    } catch (error) {
-      console.error("Error al eliminar post:", error);
-      alert("Ocurrió un error al eliminar la publicación");
-    }
+    await updateDoc(doc(db, "posts", post.id), { likes: nuevosLikes });
   };
 
   const agregarComentario = async (postId) => {
-    const texto = (inputComentarioPorPost[postId] || "").trim();
+    const texto = inputComentario[postId]?.trim();
     if (!texto) return;
 
     await addDoc(collection(db, "posts", postId, "comentarios"), {
       texto,
       autor: nombre,
-      autorFoto: foto,
       autorUid: uid,
+      autorFoto: foto,
       fecha: serverTimestamp(),
     });
 
-    setInputComentarioPorPost((prev) => ({ ...prev, [postId]: "" }));
+    setInputComentario(prev => ({ ...prev, [postId]: "" }));
   };
 
-  const editarComentario = async (postId, comentario) => {
-    const nuevoTexto = prompt("Editar comentario:", comentario.texto);
-    if (!nuevoTexto || nuevoTexto.trim() === "") return;
+  const guardarEdicion = async (tipo, postId, comentarioId) => {
+    if (!textoEdicion.trim()) return;
 
-    await updateDoc(
-      doc(db, "posts", postId, "comentarios", comentario.id),
-      { texto: nuevoTexto }
+    const ref =
+      tipo === "post"
+        ? doc(db, "posts", postId)
+        : doc(db, "posts", postId, "comentarios", comentarioId);
+
+    await updateDoc(ref, { contenido: textoEdicion, texto: textoEdicion });
+    setEditandoPost(null);
+    setEditandoComentario(null);
+    setTextoEdicion("");
+  };
+
+  const eliminar = async (tipo, postId, comentarioId) => {
+    if (!confirm("¿Eliminar?")) return;
+
+    const ref =
+      tipo === "post"
+        ? doc(db, "posts", postId)
+        : doc(db, "posts", postId, "comentarios", comentarioId);
+
+    await deleteDoc(ref);
+  };
+
+  const fecha = f => f?.toDate?.().toLocaleString("es-PE");
+
+  /* ===================== UI ===================== */
+
+  if (loading) {
+    return (
+      <div className="max-w-3xl mx-auto mt-10 space-y-4 animate-pulse">
+        <div className="h-32 bg-gray-200 rounded-xl" />
+        <div className="h-32 bg-gray-200 rounded-xl" />
+      </div>
     );
-  };
-
-  const eliminarComentario = async (postId, comentario) => {
-    if (!window.confirm("¿Eliminar comentario?")) return;
-
-    await deleteDoc(doc(db, "posts", postId, "comentarios", comentario.id));
-  };
-
-  const formatearFecha = (fecha) => {
-    if (!fecha) return "";
-    const dateObj = fecha.toDate ? fecha.toDate() : fecha;
-    return dateObj.toLocaleString("es-PE", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
-
-  if (cargando) {
-    return <p className="texto-sin-posts">Cargando comunidad...</p>;
   }
 
   return (
-    <section className="comunidad-layout">
-      <div className="comunidad-wrapper solo-card">
-        <div className="comunidad-luxus-card">
-          {/* Semicírculo superior */}
-          <div className="luxus-header-curve">
-            <div className="luxus-rays" />
-            <div className="luxus-header-inner">
-              <h2 className="luxus-title">Comunidad Conectándonos</h2>
-              <p className="luxus-subtitle">
-                Un espacio tranquilo para compartir, escuchar y acompañar.
-              </p>
-            </div>
-          </div>
+    <section className="min-h-screen bg-emerald-50">
+      {/* Header */}
+      <header className="sticky top-0 bg-white shadow z-10">
+        <div className="max-w-6xl mx-auto px-4 py-3 font-bold text-emerald-700">
+          Comunidad Conectándonos
+        </div>
+      </header>
 
-          {/* Imagen central */}
-          <div className="luxus-image-wrapper">
-            <img
-              src="https://plus.unsplash.com/premium_vector-1745401592354-1b92dfca051f?q=80&w=725&auto=format&fit=crop&ixlib=rb-4.1.0"
-              alt="Ilustración comunidad"
-              className="luxus-main-image"
+      {/* Layout */}
+      <div className="max-w-6xl mx-auto px-4 py-6 grid lg:grid-cols-4 gap-6">
+
+        {/* Perfil */}
+<aside className="bg-white rounded-xl shadow overflow-hidden lg:col-span-1">
+
+  {/* Imagen superior (reintegrada) */}
+  <div className="h-32 w-full">
+    <img
+      src="https://plus.unsplash.com/premium_vector-1745401592354-1b92dfca051f?q=80&w=725&auto=format&fit=crop"
+      alt="Comunidad"
+      className="w-full h-full object-cover"
+    />
+  </div>
+
+  {/* Contenido perfil */}
+  <div className="p-4">
+    <img
+      src={foto}
+      alt="Avatar"
+      className="w-20 h-20 mx-auto rounded-full border-4 border-emerald-600 -mt-12 bg-white object-cover"
+    />
+
+    <p className="text-center font-semibold mt-2">{nombre}</p>
+    <p className="text-xs text-center text-gray-500">{email}</p>
+
+    {/* Estado personal */}
+    <p className="text-xs text-center text-emerald-700 mt-1 italic">
+      Aquí desde la comunidad 🌱
+    </p>
+
+    {/* Estadísticas */}
+    <div className="grid grid-cols-3 gap-2 text-center mt-4 text-xs">
+      <div>
+        <p className="font-bold text-gray-800">
+          {posts.filter(p => p.autorUid === uid).length}
+        </p>
+        <p className="text-gray-500">Posts</p>
+      </div>
+      <div>
+        <p className="font-bold text-gray-800">
+          {Object.values(comentariosPorPost)
+            .flat()
+            .filter(c => c.autorUid === uid).length}
+        </p>
+        <p className="text-gray-500">Respuestas</p>
+      </div>
+      <div>
+        <p className="font-bold text-gray-800">
+          {posts
+            .filter(p => p.autorUid === uid)
+            .reduce((acc, p) => acc + p.likes.length, 0)}
+        </p>
+        <p className="text-gray-500">Likes</p>
+      </div>
+    </div>
+
+    {/* Editar perfil */}
+    <div className="mt-4 space-y-2">
+      <input
+        className="w-full border rounded-full px-3 py-1 text-sm"
+        value={nuevoNombre}
+        onChange={(e) => setNuevoNombre(e.target.value)}
+        placeholder="Actualizar nombre"
+      />
+      <input
+        className="w-full border rounded-full px-3 py-1 text-sm"
+        value={nuevaFoto}
+        onChange={(e) => setNuevaFoto(e.target.value)}
+        placeholder="Actualizar foto (URL)"
+      />
+      <button
+        onClick={actualizarPerfil}
+        className="w-full bg-emerald-600 text-white rounded-full py-1.5 text-sm font-semibold hover:bg-emerald-700 transition"
+      >
+        Guardar perfil
+      </button>
+    </div>
+  </div>
+</aside>
+
+
+        {/* Feed */}
+        <main className="lg:col-span-3 space-y-4">
+
+          {/* Crear post */}
+          <div className="bg-white rounded-xl p-4 shadow">
+            <textarea
+              className="w-full border rounded-lg p-2 text-sm"
+              placeholder="¿Qué quieres compartir hoy?"
+              value={contenidoPost}
+              onChange={e => setContenidoPost(e.target.value)}
             />
+            <button
+              onClick={crearPost}
+              className="mt-2 bg-slate-900 text-white px-4 py-1 rounded-full text-sm"
+            >
+              Compartir
+            </button>
           </div>
 
-          {/* CONTENIDO PRINCIPAL */}
-          <div className="luxus-content">
-            <h3 className="luxus-section-title">Bienvenido a la Comunidad</h3>
-            <p className="luxus-welcome-text">
-              Hola, <strong>{nombre}</strong> · Tu correo: <span>{email}</span>
-            </p>
+          {/* Posts */}
+          {posts.map(post => (
+            <div key={post.id} className="bg-white rounded-xl shadow p-4 space-y-2">
 
-            <div className="luxus-divider" />
+              {/* Autor */}
+              <div className="flex items-center gap-2">
+                <img src={post.autorFoto} className="w-10 h-10 rounded-full" />
+                <div>
+                  <p className="font-semibold text-sm">{post.autor}</p>
+                  <p className="text-xs text-gray-400">{fecha(post.fecha)}</p>
+                </div>
+              </div>
 
-            {/* EDITAR PERFIL */}
-            <div className="editar-perfil-bloque">
-              <h4 className="editar-titulo">Editar perfil</h4>
+              {/* Contenido */}
+              {editandoPost === post.id ? (
+                <>
+                  <textarea
+                    className="w-full border rounded p-2 text-sm"
+                    value={textoEdicion}
+                    onChange={e => setTextoEdicion(e.target.value)}
+                  />
+                  <button
+                    onClick={() => guardarEdicion("post", post.id)}
+                    className="text-emerald-600 text-sm"
+                  >
+                    Guardar
+                  </button>
+                </>
+              ) : (
+                <p className="text-sm">{post.contenido}</p>
+              )}
 
-              <div className="editar-formulario">
-                <input
-                  type="text"
-                  placeholder="Actualizar mi nombre"
-                  value={nuevoNombre}
-                  onChange={(e) => setNuevoNombre(e.target.value)}
+              {/* Acciones */}
+              <div className="flex gap-4 text-sm text-gray-600">
+                <button onClick={() => toggleLike(post)}>
+                  ❤️ {post.likes.length}
+                </button>
+
+                {post.autorUid === uid && (
+                  <>
+                    <button
+                      onClick={() => {
+                        setEditandoPost(post.id);
+                        setTextoEdicion(post.contenido);
+                      }}
+                    >
+                      Editar
+                    </button>
+                    <button onClick={() => eliminar("post", post.id)}>
+                      Eliminar
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* Comentarios */}
+              <div className="pt-2 space-y-2">
+                {comentariosPorPost[post.id]?.map(c => (
+                  <div key={c.id} className="bg-gray-100 rounded-lg p-2">
+                    <div className="flex items-center gap-2">
+                      <img src={c.autorFoto} className="w-6 h-6 rounded-full" />
+                      <p className="text-xs font-semibold">{c.autor}</p>
+                      <span className="text-xs text-gray-400">{fecha(c.fecha)}</span>
+                    </div>
+
+                    {editandoComentario === c.id ? (
+                      <>
+                        <textarea
+                          className="w-full border rounded p-1 text-xs"
+                          value={textoEdicion}
+                          onChange={e => setTextoEdicion(e.target.value)}
+                        />
+                        <button
+                          onClick={() => guardarEdicion("comentario", post.id, c.id)}
+                          className="text-xs text-emerald-600"
+                        >
+                          Guardar
+                        </button>
+                      </>
+                    ) : (
+                      <p className="text-xs mt-1">{c.texto}</p>
+                    )}
+
+                    {c.autorUid === uid && (
+                      <div className="flex gap-2 text-xs mt-1">
+                        <button onClick={() => {
+                          setEditandoComentario(c.id);
+                          setTextoEdicion(c.texto);
+                        }}>
+                          Editar
+                        </button>
+                        <button onClick={() => eliminar("comentario", post.id, c.id)}>
+                          Eliminar
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                {/* Responder */}
+                <textarea
+                  className="w-full border rounded p-1 text-xs"
+                  placeholder="Responder..."
+                  value={inputComentario[post.id] || ""}
+                  onChange={e =>
+                    setInputComentario(prev => ({
+                      ...prev,
+                      [post.id]: e.target.value,
+                    }))
+                  }
                 />
-                <input
-                  type="text"
-                  placeholder="Actualizar mi foto (URL)"
-                  value={nuevaFoto}
-                  onChange={(e) => setNuevaFoto(e.target.value)}
-                />
-                <button onClick={actualizarPerfil} className="btn-primario">
-                  Actualizar perfil
+                <button
+                  onClick={() => agregarComentario(post.id)}
+                  className="text-xs text-emerald-600"
+                >
+                  Responder
                 </button>
               </div>
             </div>
-
-            <div className="luxus-divider" />
-
-            {/* CREAR POST */}
-            <div className="crear-post-bloque">
-              <h4 className="subtitulo-comunidad">Crear una publicación</h4>
-
-              <textarea
-                className="textarea-post"
-                placeholder="¿Qué estás pensando?"
-                value={contenidoPost}
-                onChange={(e) => setContenidoPost(e.target.value)}
-              />
-
-              <button onClick={crearPost} className="btn-secundario">
-                Publicar
-              </button>
-            </div>
-
-            <div className="luxus-divider" />
-
-            {/* LISTA DE POSTS */}
-            <div className="posts-bloque">
-              <h4 className="subtitulo-comunidad">Publicaciones</h4>
-
-              <div className="lista-posts">
-                {posts.length === 0 && (
-                  <p className="texto-sin-posts">
-                    Aún no hay publicaciones. ¡Sé la primera en compartir algo!
-                    💬
-                  </p>
-                )}
-
-                {posts.map((post) => {
-                  const comentarios = comentariosPorPost[post.id] || [];
-                  const liked = (post.likes || []).includes(uid);
-
-                  return (
-                    <div key={post.id} className="post-card">
-                      {/* Autor */}
-                      <div className="post-autor">
-                        <img
-                          src={post.autorFoto || "/Fotod.jpg"}
-                          alt="Autor"
-                          className="post-avatar"
-                        />
-                        <div>
-                          <p className="post-autor-nombre">{post.autor}</p>
-                          <p className="post-fecha">
-                            {formatearFecha(post.fecha)}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Contenido / Edición */}
-                      {editandoID === post.id ? (
-                        <div className="post-edicion">
-                          <textarea
-                            className="textarea-post"
-                            value={nuevoContenido}
-                            onChange={(e) =>
-                              setNuevoContenido(e.target.value)
-                            }
-                          />
-                          <div className="post-edicion-botones">
-                            <button
-                              onClick={() => guardarEdicion(post.id)}
-                              className="btn-guardar"
-                            >
-                              Guardar
-                            </button>
-                            <button
-                              onClick={() => setEditandoID(null)}
-                              className="btn-cancelar"
-                            >
-                              Cancelar
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <p className="post-contenido">{post.contenido}</p>
-                      )}
-
-                      {/* Likes + acciones */}
-                      <div className="post-acciones-linea">
-                        <button
-                          className={`btn-like ${
-                            liked ? "btn-like-activo" : ""
-                          }`}
-                          onClick={() => toggleLike(post)}
-                        >
-                          ❤️ {post.likes?.length || 0}
-                        </button>
-
-                        {post.autorUid === uid && editandoID !== post.id && (
-                          <div className="post-acciones">
-                            <button
-                              onClick={() => {
-                                setEditandoID(post.id);
-                                setNuevoContenido(post.contenido);
-                              }}
-                              className="btn-editar"
-                            >
-                              Editar
-                            </button>
-                            <button
-                              onClick={() => eliminarPost(post.id)}
-                              className="btn-eliminar"
-                            >
-                              Eliminar
-                            </button>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* COMENTARIOS */}
-                      <div className="post-comentarios">
-                        <h4 className="comentarios-titulo">
-                          Comentarios ({comentarios.length})
-                        </h4>
-
-                        <div className="comentarios-lista">
-                          {comentarios.map((c) => (
-                            <div key={c.id} className="comentario-card">
-                              <div className="comentario-header">
-                                <img
-                                  src={c.autorFoto || "/Fotod.jpg"}
-                                  alt="avatar comentario"
-                                  className="comentario-avatar"
-                                />
-                                <div>
-                                  <p className="comentario-autor">
-                                    {c.autor}
-                                  </p>
-                                  <p className="comentario-fecha">
-                                    {formatearFecha(c.fecha)}
-                                  </p>
-                                </div>
-                              </div>
-
-                              <p className="comentario-texto">{c.texto}</p>
-
-                              {c.autorUid === uid && (
-                                <div className="comentario-acciones">
-                                  <button
-                                    className="comentario-btn editar"
-                                    onClick={() =>
-                                      editarComentario(post.id, c)
-                                    }
-                                  >
-                                    Editar
-                                  </button>
-                                  <button
-                                    className="comentario-btn eliminar"
-                                    onClick={() =>
-                                      eliminarComentario(post.id, c)
-                                    }
-                                  >
-                                    Eliminar
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Input de comentario */}
-                        <div className="comentario-input-wrapper">
-                          <textarea
-                            placeholder="Escribe un comentario..."
-                            className="textarea-comentario"
-                            value={inputComentarioPorPost[post.id] || ""}
-                            onChange={(e) =>
-                              setInputComentarioPorPost((prev) => ({
-                                ...prev,
-                                [post.id]: e.target.value,
-                              }))
-                            }
-                          />
-                          <div className="comentario-input-footer">
-                            <button
-                              className="btn-comentar"
-                              onClick={() => agregarComentario(post.id)}
-                            >
-                              Comentar
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* DESCRIPCIÓN + AVATAR USUARIO ABAJO */}
-            <div className="luxus-footer">
-              <p className="descripcion">
-                Aquí podrás interactuar con otros usuarios y compartir tus
-                ideas.
-              </p>
-
-              <div className="luxus-user-footer">
-                <img
-                  src={foto || "/Fotod.jpg"}
-                  alt="Foto de perfil"
-                  className="luxus-user-avatar"
-                />
-                <div>
-                  <p className="luxus-user-name">{nombre}</p>
-                  <p className="luxus-user-text">Mi espacio en la comunidad</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          ))}
+        </main>
       </div>
-
-      {/* borde inferior */}
-      <div className="comunidad-bottom-border" />
     </section>
   );
 }
-
-export default Comunidad;

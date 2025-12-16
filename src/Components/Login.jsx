@@ -33,7 +33,7 @@ function Login() {
       {/* ==== LADO IZQUIERDO (Hero con imagen real) ==== */}
       <div className="hidden md:flex items-center justify-center relative">
         <img
-          src="https://images.unsplash.com/photo-1525708827920-7a40f2e3c438?q=80&w=1200&auto=format&fit=crop"
+          src="/descarga.jfif"
           className="absolute inset-0 w-full h-full object-cover"
           alt="wellness"
         />
@@ -47,12 +47,14 @@ function Login() {
           </h1>
 
           <p className="mt-4 text-lg text-teal-100 max-w-md">
-            Tómate un momento para ti.  
-            Reconoce tus emociones y da un paso hacia una versión más plena de ti misma.
+            Tómate un momento para ti. Reconoce tus emociones y da un paso hacia
+            una versión más plena de ti misma.
           </p>
 
           <div className="mt-6 bg-white/20 px-5 py-3 rounded-2xl backdrop-blur-lg border border-white/30 inline-block">
-            <p className="text-lg font-semibold">✨ +1500 sesiones de apoyo emocional</p>
+            <p className="text-lg font-semibold">
+              ✨ +1500 sesiones de apoyo emocional
+            </p>
           </div>
         </div>
       </div>

@@ -57,12 +57,13 @@ function NavbarVisitante() {
               </Link>
             </li>
             <li>
+                          {/* Registro 
               <Link
                 className={isActive("/registrar-usuario")}
                 to="/registrar-usuario"
               >
                 Registrarse
-              </Link>
+              </Link>*/}
             </li>
           </ul>
         </nav>

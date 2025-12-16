@@ -17,6 +17,8 @@ import Comunidad from "./Components/Comunidad";
 import Rutaprivada from "./Components/Rutaprivada";
 import EncuestaBienestar from "./Components/EncuestaBienestar";
 import EncuestaEquipo from "./Components/EncuestaEquipo";
+import Telefono from "./Components/Telefono";
+import Recursos from "./Components/Recursos";
 
 function App() {
   return (
@@ -30,10 +32,19 @@ function App() {
               <>
                 <Hero />
                 <EncuestaBienestar />
+                <Telefono />
               </>
             }
           />
-          <Route path="/Informacion" element={<Informacion />} />
+          <Route
+            path="/Informacion"
+            element={
+              <>
+                <Informacion />
+                <Recursos />
+              </>
+            }
+          />
           <Route
             path="/Nosotras"
             element={
